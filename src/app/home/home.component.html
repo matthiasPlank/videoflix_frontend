@@ -1,1 +1,16 @@
 <app-header></app-header>
+
+
+<div *ngIf="videos.length > 0">
+    VIDEO LOADED
+    <div *ngFor="let video of videos; index as i;">
+        VIDEO {{i}}
+        <video width="320" height="240" controls>
+            <source src="{{video.video_file}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+
+<app-category  [categoryName]="'My First Category'"></app-category>
