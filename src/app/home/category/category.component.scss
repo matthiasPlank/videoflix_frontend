@@ -1,0 +1,14 @@
+#category{
+   
+    #category-video{
+        display: flex;    
+        gap:12px; 
+        overflow-x: scroll;
+        max-width: 100vw;
+
+        #category-video-item{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
