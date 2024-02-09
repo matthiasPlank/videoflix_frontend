@@ -12,9 +12,8 @@ export class VideoService {
   videos: Video[] = []
 
   constructor() { 
-   
+    
   }
-
 
   async getAllVideos(){
     const requestOptions = { 
@@ -32,12 +31,39 @@ export class VideoService {
           console.log(video); 
           this.videos.push(video); 
         });
-      
         return this.videos; 
       })
       .catch(error => {
         console.log('error', error);
         return this.videos; 
       })
+  }
+
+  getVideoByID(id:string){
+    this.getAllVideos(); 
+    const vid = this.videos.find((video) => video.id == id); 
+    if(vid){
+      return vid; 
+    }
+    else{
+      return new Video(); 
+    }
+  }
+
+  getVideoFromBackeendByID(id:string){
+    const requestOptions = { 
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+        } 
+    } 
+    return fetch("http://127.0.0.1:8000/video/" + id , requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+      console.log('error', error);
+    })
   }
 }

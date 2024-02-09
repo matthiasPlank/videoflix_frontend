@@ -1,12 +1,18 @@
 <div id="category" *ngIf="categoryVideos.length > 0">
     {{categoryName}}
     <div id="category-video" >
-        <div id="category-video-item" *ngFor="let video of categoryVideos; index as i;">
-            VIDEO {{i}}
+        <div id="category-video-item" *ngFor="let video of categoryVideos; index as i;" (click)="openVideo(video.id)">
+          
+            <img src="{{video.poster_file}}">
+            <div id="category-video-item-play-button">
+                <img src="assets/icons/play-button-icon.svg" alt="play">
+            </div>
+
+            <!--     
             <video width="320" height="240" controls>
                 <source src="{{video.video_file}}" type="video/mp4">
                 Your browser does not support the video tag.
-            </video>
+            </video> -->
         </div>
     </div>
 </div>

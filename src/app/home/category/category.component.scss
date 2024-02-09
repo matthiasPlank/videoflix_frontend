@@ -9,6 +9,33 @@
         #category-video-item{
             display: flex;
             flex-direction: column;
+            position: relative;
+         
+            img{
+                width: 320px;
+                height: 210px;
+                object-fit: cover;
+            }
+            &:hover{
+                cursor: pointer;
+                #category-video-item-play-button{
+                    display: flex !important; 
+                }
+            }
+            #category-video-item-play-button{
+                position: absolute;
+                display: none;
+                top:0px; 
+                left: 0px;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                img{
+                    filter: invert(1);
+                    object-fit: scale-down;
+                    width: 20%;
+                }
+            }
         }
     }
 }
