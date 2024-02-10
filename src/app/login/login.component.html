@@ -7,6 +7,34 @@
     <div id="login-content">
         <div id="login-form-container">
             <h2>LOGIN</h2>
+            <form [formGroup]="LoginForm" id="login-form" (ngSubmit)="login()">
+
+                <mat-form-field>
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="max@mustermann.com" formControlName="email" required>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+
+                  <button mat-raised-button class="red-btn">Login</button>
+
+              </form>
+
+              <div id="login-register-container">
+                <h3>Not registered yet?&nbsp; &nbsp;<a href="">Register now!</a></h3>
+                
+              </div>
+              <div id="login-footer-container">
+                <a href="">Datenschutz</a>
+                <a href="">Impressum</a>
+              </div>
+            
     
         </div>
     </div>
