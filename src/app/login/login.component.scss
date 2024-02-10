@@ -1,0 +1,36 @@
+#login{
+   
+    display: flex;
+    flex-direction: column;
+
+    #login-header-logo{
+        padding: 48px;
+    }
+    #login-background-image{
+       
+        position: absolute;
+        top: 0px; 
+        left: 0px; 
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mask-image: linear-gradient(to top, #141414 40%, transparent 70%);
+    }
+    #login-content{
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        #login-form-container{
+            min-height: 600px;
+            max-height: 80vh;
+            min-width: 300px;
+            max-width: 80vw;
+            background-color: rgba(125, 120, 120, 0.3);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

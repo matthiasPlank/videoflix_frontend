@@ -22,19 +22,17 @@ export class VideoService {
             'Content-Type': 'application/json'
           } 
     } 
-
+    this.videos = []; 
    return fetch("http://127.0.0.1:8000/video/", requestOptions)
       .then(response => response.json())
       .then(result => {
         result.forEach((video: any) => {
-          console.log("LoadedVideo:"); 
-          console.log(video); 
           this.videos.push(video); 
         });
         return this.videos; 
       })
       .catch(error => {
-        console.log('error', error);
+        console.error('error', error);
         return this.videos; 
       })
   }
@@ -50,20 +48,25 @@ export class VideoService {
     }
   }
 
-  getVideoFromBackeendByID(id:string){
+  async getVideoFromBackeendByID(id:string){
     const requestOptions = { 
       method: 'GET',
       headers: {
           'Content-Type': 'application/json'
         } 
     } 
+
     return fetch("http://127.0.0.1:8000/video/" + id , requestOptions)
     .then(response => response.json())
     .then(result => {
+     
+        console.log("result from backend");
         console.log(result);
+        return result
     })
     .catch(error => {
       console.log('error', error);
+      return new Video(); 
     })
   }
 }
