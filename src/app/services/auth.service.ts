@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError } from 'rxjs';
 
 
 @Injectable({
@@ -15,11 +16,10 @@ export class AuthService {
 
   getToken(email:string, password:string){
     console.log("getToken");
-    return this.httpClient.request('POST' , this.backendURL + "/api-token-auth/" , {
-      body: '{"username": "'+ email+ '", "password": "' + password + '"}',
-      headers: new HttpHeaders({'Content-Type' : 'application/json'})
-    } )   
-
+      return this.httpClient.request('POST' , this.backendURL + "/api-token-auth/" , {
+        body: '{"email": "'+ email+ '", "password": "' + password + '"}',
+        headers: new HttpHeaders({'Content-Type' : 'application/json'})
+      } )  
   }
 
 }

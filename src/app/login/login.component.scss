@@ -17,13 +17,13 @@
         mask-image: linear-gradient(to top, #141414 40%, transparent 70%);
         filter: brightness(0.4);
     }
-    #login-content{
+    .content{
         z-index: 1;
         display: flex;
         justify-content: center;
         align-items: center;
 
-        #login-form-container{
+        .form-container{
             min-height: 200px;
             max-height: 80vh;
             min-width: 300px;
@@ -38,7 +38,16 @@
             #login-form{
                 display: flex;
                 flex-direction: column;
-                
+
+            }
+            #register-form{
+                display: flex;
+                flex-direction: column;
+                #register-form-btn{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 12px; 
+                }
             }
 
             #login-register-container{
@@ -70,6 +79,12 @@
                         text-decoration: underline;
                     }
                 }
+            }
+            .form-error{
+                color: #DC1B27;
+                display: flex;
+                justify-content: center;
+                padding-top: 18px;
             }
         }
     }

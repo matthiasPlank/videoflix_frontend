@@ -16,6 +16,14 @@ h2{
     background-color: #DC1B27 !important; 
     color: white !important;
 }
+.gray-btn{
+    background-color: gray !important; 
+    color: white !important;
+}
+
+button:disabled{
+    opacity: 0.5;
+}
 
 /* bebas-neue-regular - latin */
 @font-face {
