@@ -24,7 +24,9 @@ export class LoginComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('' , [Validators.required, Validators.minLength(4)] ),
   });
-  hide = true;
+  hideLoginPW = true;
+  hideRegisterPW = true;
+  hideRegisterConfirmPW = true;
   loginFailed = false; 
 
   RegisterForm = new FormGroup({
@@ -33,6 +35,7 @@ export class LoginComponent {
     confirmPassword: new FormControl('', [Validators.required , Validators.minLength(4)]),
   });
   showRegister = false; 
+
 
   constructor(
       private authService:AuthService, 
@@ -47,21 +50,26 @@ export class LoginComponent {
     console.log(username);
     if(username != null && password != null){
       this.authService.getToken( username , password )
-      .subscribe(response => {
+      .subscribe( (response: any)  => {
           console.log("Sucessfull:");
-          console.log(response); 
-          /* SAVE TOKEN  */
+          console.log(response.token); 
+          localStorage.setItem("token" , response.token)
           this.router.navigate(['/home']);
       } ,  
           err => {
             console.log('HTTP Error', err); 
             this.loginFailed = true
           }
-      );
+      )
     }
   }
 
   register(){
-    console.log("");
+    const email = this.RegisterForm.get("email")?.value; 
+    const password = this.RegisterForm.get("password")?.value; 
+    const confirmPassword = this.RegisterForm.get("confirmPassword")?.value; 
+    if( email != null && password != null && password == confirmPassword){
+        this.authService.register(email, password); 
+    }
   }
 }
