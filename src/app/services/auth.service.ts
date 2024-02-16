@@ -21,8 +21,19 @@ export class AuthService {
       } )  
   }
 
-  register(email:string, password:string){
-
+  register(email:string, password:string , confirmPassword: string , user:string){
+    console.log("SEND REGISTER REQUEST");
+    
+    return this.httpClient.request('POST' , this.backendURL + "/register/" , {
+      body: JSON.stringify({
+        username: user,
+        email: email,
+        password: password,
+        password2: confirmPassword
+      }),
+      headers: new HttpHeaders({'Content-Type' : 'application/json'})
+    } )  
+    
   }
 
 }

@@ -8,13 +8,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { AuthService } from '../services/auth.service';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule , MatButtonModule , NgIf],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule , MatButtonModule , NgIf , MatProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -28,6 +29,8 @@ export class LoginComponent {
   hideRegisterPW = true;
   hideRegisterConfirmPW = true;
   loginFailed = false; 
+  showConfirmationEmailHint = false; 
+  showSpinner = false; 
 
   RegisterForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -69,7 +72,19 @@ export class LoginComponent {
     const password = this.RegisterForm.get("password")?.value; 
     const confirmPassword = this.RegisterForm.get("confirmPassword")?.value; 
     if( email != null && password != null && password == confirmPassword){
-        this.authService.register(email, password); 
+        this.showSpinner = true; 
+        this.authService.register(email, password , confirmPassword , email)
+        .subscribe((response: any)  => {
+          console.log("Sucessfull:");
+          console.log(response.token); 
+          this.showSpinner = false; 
+          localStorage.setItem("token" , response.token); 
+          this.showConfirmationEmailHint = true; 
+          setTimeout(()=>{                   
+            this.showConfirmationEmailHint = false; 
+            this.router.navigate(['/login']);
+          }, 3000);
+      }); 
     }
   }
 }

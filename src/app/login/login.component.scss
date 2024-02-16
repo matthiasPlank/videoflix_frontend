@@ -35,6 +35,14 @@
             flex-direction: column;
             padding: 48px;
 
+            #confirmation-email-hint{
+                display: flex;
+                justify-content: center;
+                span{
+                    text-align: center;
+                }
+            }
+
             #login-form{
                 display: flex;
                 flex-direction: column;
@@ -47,7 +55,7 @@
                     display: flex;
                     flex-direction: row;
                     gap: 12px; 
-                }
+                } 
             }
 
             #login-register-container{
