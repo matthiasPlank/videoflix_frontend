@@ -39,6 +39,30 @@ export class VideouploadComponent {
     this.genre = event.target.value
   }
 
+  /*
+  refactoring option here:
+  onInputChanged(event: any, property: string) {
+    switch (property) {
+      case 'title':
+      case 'description':
+        this[property] = event.target.value;
+        break;
+      case 'video_file':
+      case 'poster_file':
+        this[property] = event.target.files[0];
+        break;
+      case 'created_at':
+        this[property] = new Date(event.target.value);
+        break;
+      case 'genre':
+        this.genre = event.target.value;
+        break;
+      default:
+        break;
+    }
+  }
+  */
+
 }
 
 
