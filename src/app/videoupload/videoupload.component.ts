@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Video } from '../models/video.class';
 import { VideoService } from '../services/video.service';
-import { subscribeOn } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,10 +17,9 @@ export class VideouploadComponent {
   description: string;
   video_file: File;
   poster_file: File;
-  /*created_at: Date;*/
   genre: string;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
 
   }
 
@@ -36,9 +35,7 @@ export class VideouploadComponent {
   onPosterfileChanged(event: any) {
     this.poster_file = event.target.files[0];
   }
-  /*onDateChanged(event: any) {
-    this.created_at = event.target.getDate();
-  }*/
+
   onGenreChanged(event: any) {
     this.genre = event.target.value
   }
@@ -49,11 +46,14 @@ export class VideouploadComponent {
     uploadData.append('description', this.description);
     uploadData.append('video_file', this.video_file);
     uploadData.append('poster_file', this.poster_file);
-    /*uploadData.append('created_at', this.created_at.toISOString());*/
     uploadData.append('poster_file', this.poster_file);
     uploadData.append('genre', this.genre);
     this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
-      data => console.log(data),
+      data => {console.log(data);
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([this.router.url]);
+      },
       error => console.log(error)
 
     );
