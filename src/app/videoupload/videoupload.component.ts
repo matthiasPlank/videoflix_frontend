@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Video } from '../models/video.class';
 import { VideoService } from '../services/video.service';
+import { subscribeOn } from 'rxjs';
 
 
 @Component({
@@ -16,9 +17,12 @@ export class VideouploadComponent {
   description: string;
   video_file: File;
   poster_file: File;
-  created_at: Date;
+  /*created_at: Date;*/
   genre: string;
 
+  constructor(private http: HttpClient){
+
+  }
 
   onTitleChanged(event: any) {
     this.title = event.target.value;
@@ -32,11 +36,27 @@ export class VideouploadComponent {
   onPosterfileChanged(event: any) {
     this.poster_file = event.target.files[0];
   }
-  onDateChanged(event: any) {
+  /*onDateChanged(event: any) {
     this.created_at = event.target.getDate();
-  }
+  }*/
   onGenreChanged(event: any) {
     this.genre = event.target.value
+  }
+
+  addVideo(){
+    const uploadData = new FormData();
+    uploadData.append('title', this.title);
+    uploadData.append('description', this.description);
+    uploadData.append('video_file', this.video_file);
+    uploadData.append('poster_file', this.poster_file);
+    /*uploadData.append('created_at', this.created_at.toISOString());*/
+    uploadData.append('poster_file', this.poster_file);
+    uploadData.append('genre', this.genre);
+    this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
+      data => console.log(data),
+      error => console.log(error)
+
+    );
   }
 
   /*

@@ -20,10 +20,10 @@
     <input type="file" (change)="onPosterfileChanged($event)">
 </label>
 <br />
-<label>
+<!--<label>
     Created_at:
     <input type="date" (change)="onDateChanged($event)">
-</label>
+</label>-->
 <br />
 <label>
     Genre:
@@ -45,6 +45,9 @@
         <!-- Add more options as needed -->
     </select>
 </label>
+<br/>
+
+<button (click)="addVideo()">Add Video</button>
 
 <!-- Refactoring option:
     <label>
