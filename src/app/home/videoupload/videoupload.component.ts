@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
   styleUrl: './videoupload.component.scss'
 })
 export class VideouploadComponent {
-  title: string;
-  description: string;
-  video_file: File;
-  poster_file: File;
-  genre: string;
+  title: string  = "" ;
+  description: string = "" ;
+  video_file!: File ; 
+  poster_file!: File ;
+  genre: string = "" ;
 
   constructor(private http: HttpClient, private router: Router){
 
