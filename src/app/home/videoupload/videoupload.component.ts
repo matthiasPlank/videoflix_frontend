@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Video } from '../models/video.class';
-import { VideoService } from '../services/video.service';
+import { Video } from '../../models/video.class';
+import { VideoService } from '../../services/video.service';
 import { Router } from '@angular/router';
 
 

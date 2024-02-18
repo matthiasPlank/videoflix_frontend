@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "./header/header.component";
-import { VideouploadComponent } from "../videoupload/videoupload.component";
+import { VideouploadComponent } from "./videoupload/videoupload.component";
 import { VideoService } from '../services/video.service';
 import { Video } from '../models/video.class';
 import { NgFor, NgIf } from '@angular/common';
