@@ -1,11 +1,4 @@
-#login{
-   
-    display: flex;
-    flex-direction: column;
 
-    .formcontainer{
-        z-index: 1;
-    }
 
     #login-header-logo{
         padding: 48px;
@@ -100,4 +93,3 @@
             }
         }
     }
-}

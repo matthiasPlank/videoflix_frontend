@@ -9,15 +9,17 @@ import { AuthService } from '../services/auth.service';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoginFormComponent } from "./login-form/login-form.component";
+import { RegisterFormComponent } from "./register-form/register-form.component";
 
 
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule , MatButtonModule , NgIf , MatProgressSpinnerModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    standalone: true,
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, MatProgressSpinnerModule, LoginFormComponent, RegisterFormComponent]
 })
 export class LoginComponent {
 
@@ -45,46 +47,10 @@ export class LoginComponent {
       private router:Router
       ){}
 
+  showReg(){
+    this.showRegister = true; 
+  }
+
+
   
-  login(){
-    const username = this.LoginForm.get("email")?.value; 
-    const password = this.LoginForm.get("password")?.value; 
-
-    console.log(username);
-    if(username != null && password != null){
-      this.authService.getToken( username , password )
-      .subscribe( (response: any)  => {
-          console.log("Sucessfull:");
-          console.log(response.token); 
-          localStorage.setItem("token" , response.token)
-          this.router.navigate(['/home']);
-      } ,  
-          err => {
-            console.log('HTTP Error', err); 
-            this.loginFailed = true
-          }
-      )
-    }
-  }
-
-  register(){
-    const email = this.RegisterForm.get("email")?.value; 
-    const password = this.RegisterForm.get("password")?.value; 
-    const confirmPassword = this.RegisterForm.get("confirmPassword")?.value; 
-    if( email != null && password != null && password == confirmPassword){
-        this.showSpinner = true; 
-        this.authService.register(email, password , confirmPassword , email)
-        .subscribe((response: any)  => {
-          console.log("Sucessfull:");
-          console.log(response.token); 
-          this.showSpinner = false; 
-          localStorage.setItem("token" , response.token); 
-          this.showConfirmationEmailHint = true; 
-          setTimeout(()=>{                   
-            this.showConfirmationEmailHint = false; 
-            this.router.navigate(['/login']);
-          }, 3000);
-      }); 
-    }
-  }
 }
