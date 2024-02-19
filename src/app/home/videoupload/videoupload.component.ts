@@ -1,25 +1,27 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Video } from '../../models/video.class';
-import { VideoService } from '../../services/video.service';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
 
 @Component({
   selector: 'app-videoupload',
   standalone: true,
-  imports: [],
+  imports: [MatFormFieldModule, MatSelectModule],
   templateUrl: './videoupload.component.html',
   styleUrl: './videoupload.component.scss'
 })
 export class VideouploadComponent {
   title: string  = "" ;
   description: string = "" ;
-  video_file!: File ; 
+  video_file!: File ;
   poster_file!: File ;
   genre: string = "" ;
 
-  constructor(private http: HttpClient, private router: Router){
+  constructor(private http: HttpClient,
+    private router: Router,
+    public dialog: MatDialog,){
 
   }
 
@@ -39,6 +41,18 @@ export class VideouploadComponent {
   onGenreChanged(event: any) {
     this.genre = event.target.value
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(VideouploadComponent, {
+      width: '400px', // Adjust the width as needed
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Include any logic you want to execute after the dialog is closed
+    });
+  }
+
 
   addVideo(){
     const uploadData = new FormData();

@@ -1,5 +1,46 @@
 <h2>Upload your own video</h2>
 
+<div class="form-group">
+  <mat-form-field>
+    <input matInput placeholder="Title" (change)="onTitleChanged($event)">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field>
+    <input matInput placeholder="Description" (change)="onDescriptionChanged($event)">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field>
+    <input matInput placeholder="Video File" type="file" (change)="onVideofileChanged($event)">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+  <mat-form-field>
+    <input matInput placeholder="Poster File" type="file" (change)="onPosterfileChanged($event)">
+  </mat-form-field>
+</div>
+
+<div class="form-group">
+    <label for="genre">Genre:</label>
+    <select id="genre" (change)="onGenreChanged($event)">
+      <option value="Action">Action</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Thriller">Thriller</option>
+      <!-- Add more options as needed -->
+    </select>
+  </div>
+
+<div class="form-group">
+  <button mat-raised-button color="primary" (click)="addVideo()">Add Video</button>
+
+</div>
+
+<!--<h2>Upload your own video</h2>
+
 <label>
     Title:
     <input type="text" (change)="onTitleChanged($event)">
@@ -38,12 +79,14 @@
         <option value="Mystery">Mystery</option>
         <option value="Documentary">Documentary</option>
         <option value="Other">Other</option>
-        <!-- Add more options as needed -->
+
     </select>
 </label>
 <br/>
 
 <button (click)="addVideo()">Add Video</button>
+-->
+
 
 <!-- Refactoring option:
     <label>

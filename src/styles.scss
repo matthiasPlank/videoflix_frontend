@@ -3,7 +3,7 @@
 html, body{
     font-family: 'Bebas Neue' !important;
     margin: 0px;
-    background-color: #141414; 
+    background-color: #141414;
     color: white;
 }
 
@@ -13,17 +13,22 @@ h2{
 }
 
 .red-btn{
-    background-color: #DC1B27 !important; 
+    background-color: #DC1B27 !important;
     color: white !important;
 }
 .gray-btn{
-    background-color: gray !important; 
+    background-color: gray !important;
     color: white !important;
 }
 
 button:disabled{
     opacity: 0.5;
 }
+
+mat-select, mat-option {
+    display: block;
+    width: auto;
+  }
 
 /* bebas-neue-regular - latin */
 @font-face {
