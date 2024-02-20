@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { RegisterFormComponent } from "./register-form/register-form.component";
+import { ForgetPasswordComponent } from "./forget-password/forget-password.component";
 
 
 
@@ -19,28 +20,12 @@ import { RegisterFormComponent } from "./register-form/register-form.component";
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, MatProgressSpinnerModule, LoginFormComponent, RegisterFormComponent]
+    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, MatProgressSpinnerModule, LoginFormComponent, RegisterFormComponent, ForgetPasswordComponent]
 })
 export class LoginComponent {
 
-  LoginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('' , [Validators.required, Validators.minLength(4)] ),
-  });
-  hideLoginPW = true;
-  hideRegisterPW = true;
-  hideRegisterConfirmPW = true;
-  loginFailed = false; 
-  showConfirmationEmailHint = false; 
-  showSpinner = false; 
-
-  RegisterForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('' , [Validators.required, Validators.minLength(4)]),
-    confirmPassword: new FormControl('', [Validators.required , Validators.minLength(4)]),
-  });
   showRegister = false; 
-
+  passwordReset = false; 
 
   constructor(
       private authService:AuthService, 
@@ -49,6 +34,12 @@ export class LoginComponent {
 
   showReg(){
     this.showRegister = true; 
+    this.passwordReset = false; 
+  }
+
+  showPWReset(){
+    this.showRegister = false; 
+    this.passwordReset = true; 
   }
 
 

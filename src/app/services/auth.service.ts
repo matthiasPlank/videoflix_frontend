@@ -33,7 +33,19 @@ export class AuthService {
       }),
       headers: new HttpHeaders({'Content-Type' : 'application/json'})
     } )  
+  }
+
+
+  resetPassword(email:string){
+   
+    console.log("SEND FORGET PASSWORD MAIL");
     
+    return this.httpClient.request('POST' , this.backendURL + "/password_reset/" , {
+      body: JSON.stringify({
+        email: email
+      }),
+      headers: new HttpHeaders({'Content-Type' : 'application/json'})
+    } )  
   }
 
 }

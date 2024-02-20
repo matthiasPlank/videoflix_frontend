@@ -69,6 +69,19 @@
                     }
                 }
             }
+            #login-forgetPW-container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a{
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: #DC1B27;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
             #login-footer-container{
                 padding-top: 24px;
                 width: 100%;
