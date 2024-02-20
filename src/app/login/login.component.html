@@ -5,10 +5,8 @@
         <img id="login-header-logo" src="/assets/logo/videoflix.png" alt="logo">
     </div>
  
-    <app-login-form *ngIf="!showRegister" class="formcontainer" (showReg)="showReg()"></app-login-form>
-    <app-register-form *ngIf="showRegister" class="formcontainer"></app-register-form>
-
-
-
+    <app-login-form *ngIf="!showRegister && !passwordReset" class="formcontainer" (showReg)="showReg()" (showPWReset)="showPWReset()"></app-login-form>
+    <app-register-form *ngIf="showRegister && !passwordReset" class="formcontainer"></app-register-form>
+    <app-forget-password *ngIf="!showRegister && passwordReset" class="formcontainer"></app-forget-password>
 
 </div>

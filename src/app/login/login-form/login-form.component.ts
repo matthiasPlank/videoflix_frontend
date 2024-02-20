@@ -35,6 +35,8 @@ export class LoginFormComponent {
   showRegister = false; 
 
   @Output() showReg = new EventEmitter<string>();
+  @Output() showPWReset = new EventEmitter<string>();
+
 
   constructor(
     private authService:AuthService, 
@@ -66,6 +68,10 @@ export class LoginFormComponent {
 
   showRegisterForm(){
     this.showReg.emit("");
+  }
+
+  showPasswordReset(){
+    this.showPWReset.emit(""); 
   }
 
 }

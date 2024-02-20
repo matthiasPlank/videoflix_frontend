@@ -58,7 +58,12 @@ export class RegisterFormComponent {
             }, 3000);
         }); 
       }
-    }
+  }
+
+  
+  backToLogin(){
+
+  }
 
 
 
