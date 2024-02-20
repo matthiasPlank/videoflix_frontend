@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="form-container">
+  <div *ngIf="isModalVisible" class="form-container">
     <div id="upload-form">
       <div class="form-group">
         <label for="title">Title:</label>
@@ -14,11 +14,13 @@
       <div class="form-group">
         <label for="videoFile">Video File:</label>
         <input type="file" id="videoFile" (change)="onVideofileChanged($event)">
+        <div *ngIf="video_file">Selected File: {{ video_file.name }}</div>
       </div>
 
       <div class="form-group">
         <label for="posterFile">Poster File:</label>
         <input type="file" id="posterFile" (change)="onPosterfileChanged($event)">
+        <div *ngIf="poster_file">Selected File: {{ poster_file.name }}</div>
       </div>
 
       <div class="form-group">

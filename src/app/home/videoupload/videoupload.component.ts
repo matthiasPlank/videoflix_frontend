@@ -1,30 +1,41 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy  } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
 import { VideoUploadDialogComponent } from '../video-upload-dialog/video-upload-dialog.component';;
 import { CommonModule } from '@angular/common'; // Import CommonModule
+import { ModalService } from '../../services/modal.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-videoupload',
   standalone: true,
   imports: [MatFormFieldModule, MatSelectModule, CommonModule],
   templateUrl: './videoupload.component.html',
-  styleUrl: './videoupload.component.scss'
+  styleUrl: './videoupload.component.scss',
 })
-export class VideouploadComponent {
-  title: string  = "" ;
-  description: string = "" ;
-  video_file!: File ;
-  poster_file!: File ;
-  genre: string = "" ;
+export class VideouploadComponent implements OnDestroy {
+  title: string = "";
+  description: string = "";
+  video_file!: File;
+  poster_file!: File;
+  genre: string = "";
   isModalVisible: boolean = false;
+  private modalSubscription: Subscription;
 
   constructor(private http: HttpClient,
     private router: Router,
-    public dialog: MatDialog,){
+    public dialog: MatDialog,
+    private modalService: ModalService) {
+      this.modalSubscription = this.modalService.openModal$.subscribe(() => {
+        this.openModal();
+      });
+  }
+
+  ngOnDestroy() {
+    this.modalSubscription.unsubscribe();
   }
 
   openModal() {
@@ -54,7 +65,7 @@ export class VideouploadComponent {
 
 
 
-  addVideo(){
+  addVideo() {
     const uploadData = new FormData();
     uploadData.append('title', this.title);
     uploadData.append('description', this.description);
@@ -63,7 +74,8 @@ export class VideouploadComponent {
     uploadData.append('poster_file', this.poster_file);
     uploadData.append('genre', this.genre);
     this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
-      data => {console.log(data);
+      data => {
+        console.log(data);
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate([this.router.url]);

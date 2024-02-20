@@ -3,6 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +14,17 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router:Router){
+  constructor(private router:Router, public modalService: ModalService){
 
+  }
+
+  openModal() {
+    // Trigger the openModal method from the service
+    this.modalService.openModal();
   }
 
   logout(){
-    localStorage.removeItem("token"); 
-    this.router.navigateByUrl("/login"); 
+    localStorage.removeItem("token");
+    this.router.navigateByUrl("/login");
   }
-
 }
