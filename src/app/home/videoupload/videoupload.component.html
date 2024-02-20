@@ -1,42 +1,37 @@
 <h2>Upload your own video</h2>
 
 <div class="form-group">
-  <mat-form-field>
-    <input matInput placeholder="Title" (change)="onTitleChanged($event)">
-  </mat-form-field>
+  <label for="title">Title:</label>
+  <input type="text" id="title" placeholder="Title" (change)="onTitleChanged($event)">
 </div>
 
 <div class="form-group">
-  <mat-form-field>
-    <input matInput placeholder="Description" (change)="onDescriptionChanged($event)">
-  </mat-form-field>
+  <label for="description">Description:</label>
+  <input type="text" id="description" placeholder="Description" (change)="onDescriptionChanged($event)">
 </div>
 
 <div class="form-group">
-  <mat-form-field>
-    <input matInput placeholder="Video File" type="file" (change)="onVideofileChanged($event)">
-  </mat-form-field>
+  <label for="videoFile">Video File:</label>
+  <input type="file" id="videoFile" (change)="onVideofileChanged($event)">
 </div>
 
 <div class="form-group">
-  <mat-form-field>
-    <input matInput placeholder="Poster File" type="file" (change)="onPosterfileChanged($event)">
-  </mat-form-field>
+  <label for="posterFile">Poster File:</label>
+  <input type="file" id="posterFile" (change)="onPosterfileChanged($event)">
 </div>
 
 <div class="form-group">
-    <label for="genre">Genre:</label>
-    <select id="genre" (change)="onGenreChanged($event)">
-      <option value="Action">Action</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Thriller">Thriller</option>
-      <!-- Add more options as needed -->
-    </select>
-  </div>
+  <label for="genre">Genre:</label>
+  <select id="genre" (change)="onGenreChanged($event)">
+    <option value="Action">Action</option>
+    <option value="Comedy">Comedy</option>
+    <option value="Thriller">Thriller</option>
+    <!-- Add more options as needed -->
+  </select>
+</div>
 
 <div class="form-group">
-  <button mat-raised-button color="primary" (click)="addVideo()">Add Video</button>
-
+  <button type="button" (click)="addVideo()">Add Video</button>
 </div>
 
 <!--<h2>Upload your own video</h2>

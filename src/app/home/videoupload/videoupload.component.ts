@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
+import { VideoUploadDialogComponent } from '../video-upload-dialog/video-upload-dialog.component';;
 
 @Component({
   selector: 'app-videoupload',
@@ -42,17 +43,7 @@ export class VideouploadComponent {
     this.genre = event.target.value
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(VideouploadComponent, {
-      width: '400px', // Adjust the width as needed
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // Include any logic you want to execute after the dialog is closed
-    });
-  }
-
+ 
 
   addVideo(){
     const uploadData = new FormData();
