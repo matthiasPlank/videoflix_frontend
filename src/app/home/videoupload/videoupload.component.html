@@ -1,39 +1,44 @@
-<h2>Upload your own video</h2>
+<button type="button" (click)="openModal()">Upload Video</button>
 
-<div class="form-group">
-  <label for="title">Title:</label>
-  <input type="text" id="title" placeholder="Title" (change)="onTitleChanged($event)">
+<!-- Modal containing the form fields -->
+<div *ngIf="isModalVisible" class="modal">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" id="title" placeholder="Title" (input)="onTitleChanged($event)">
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input type="text" id="description" placeholder="Description" (input)="onDescriptionChanged($event)">
+  </div>
+
+  <div class="form-group">
+    <label for="videoFile">Video File:</label>
+    <input type="file" id="videoFile" (change)="onVideofileChanged($event)">
+  </div>
+
+  <div class="form-group">
+    <label for="posterFile">Poster File:</label>
+    <input type="file" id="posterFile" (change)="onPosterfileChanged($event)">
+  </div>
+
+  <div class="form-group">
+    <label for="genre">Genre:</label>
+    <select id="genre" (change)="onGenreChanged($event)">
+      <option value="Action">Action</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Thriller">Thriller</option>
+      <!-- Add more options as needed -->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="button" (click)="addVideo()">Add Video</button>
+  </div>
+
+  <!-- Button to close the modal -->
+  <button type="button" (click)="closeModal()">Close</button>
 </div>
-
-<div class="form-group">
-  <label for="description">Description:</label>
-  <input type="text" id="description" placeholder="Description" (change)="onDescriptionChanged($event)">
-</div>
-
-<div class="form-group">
-  <label for="videoFile">Video File:</label>
-  <input type="file" id="videoFile" (change)="onVideofileChanged($event)">
-</div>
-
-<div class="form-group">
-  <label for="posterFile">Poster File:</label>
-  <input type="file" id="posterFile" (change)="onPosterfileChanged($event)">
-</div>
-
-<div class="form-group">
-  <label for="genre">Genre:</label>
-  <select id="genre" (change)="onGenreChanged($event)">
-    <option value="Action">Action</option>
-    <option value="Comedy">Comedy</option>
-    <option value="Thriller">Thriller</option>
-    <!-- Add more options as needed -->
-  </select>
-</div>
-
-<div class="form-group">
-  <button type="button" (click)="addVideo()">Add Video</button>
-</div>
-
 <!--<h2>Upload your own video</h2>
 
 <label>

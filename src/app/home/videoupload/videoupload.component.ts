@@ -5,11 +5,12 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
 import { VideoUploadDialogComponent } from '../video-upload-dialog/video-upload-dialog.component';;
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
   selector: 'app-videoupload',
   standalone: true,
-  imports: [MatFormFieldModule, MatSelectModule],
+  imports: [MatFormFieldModule, MatSelectModule, CommonModule],
   templateUrl: './videoupload.component.html',
   styleUrl: './videoupload.component.scss'
 })
@@ -19,11 +20,19 @@ export class VideouploadComponent {
   video_file!: File ;
   poster_file!: File ;
   genre: string = "" ;
+  isModalVisible: boolean = false;
 
   constructor(private http: HttpClient,
     private router: Router,
     public dialog: MatDialog,){
+  }
 
+  openModal() {
+    this.isModalVisible = true;
+  }
+
+  closeModal() {
+    this.isModalVisible = false;
   }
 
   onTitleChanged(event: any) {
@@ -43,7 +52,7 @@ export class VideouploadComponent {
     this.genre = event.target.value
   }
 
- 
+
 
   addVideo(){
     const uploadData = new FormData();
