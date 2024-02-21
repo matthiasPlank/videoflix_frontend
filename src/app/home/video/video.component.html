@@ -2,5 +2,7 @@
             <video #myVideo controls>
                 <source src="{{video.video_file}}" type="video/mp4">
                 Your browser does not support the video tag.
-            </video> 
+            </video>
+            <button (click)="switchToQuality(480)">Switch to 480p</button>
+            <button (click)="switchToQuality(720)">Switch to 720p</button>
 </div>

@@ -24,6 +24,8 @@ export class VideouploadComponent implements OnDestroy {
   genre: string = "";
   isModalVisible: boolean = false;
   private modalSubscription: Subscription;
+  video_480p_file: string | null = null;
+  video_720p_file: string | null = null;
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -71,17 +73,40 @@ export class VideouploadComponent implements OnDestroy {
     uploadData.append('description', this.description);
     uploadData.append('video_file', this.video_file);
     uploadData.append('poster_file', this.poster_file);
-    uploadData.append('poster_file', this.poster_file);
     uploadData.append('genre', this.genre);
-    this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
-      data => {
-        console.log(data);
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([this.router.url]);
-      },
-      error => console.log(error)
+    if (this.video_480p_file !== null) {
+      uploadData.append('video_480p_file', this.video_480p_file);
+    }
 
+    if (this.video_720p_file !== null) {
+      uploadData.append('video_720p_file', this.video_720p_file);
+    }
+    this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
+      (data: any) => {
+        console.log('Success:', data);
+        // Update the frontend video_480p_file and video_720p_file values with the actual file paths
+        this.updateVideoFiles(data.id);
+        // ... (rest of the code)
+      },
+      (error) => {
+        console.error('Error:', error);
+        // Handle the error, display a message to the user, or log more details
+      }
+    );
+  }
+
+  updateVideoFiles(videoId: number) {
+    // Perform an API request to get the updated video details, including file paths
+    this.http.get(`http://127.0.0.1:8000/video/${videoId}`).subscribe(
+      (data: any) => {
+        // Update the video_480p_file and video_720p_file values in your component
+        this.video_480p_file = data.video_480p_file;
+        this.video_720p_file = data.video_720p_file;
+      },
+      (error) => {
+        console.error('Error fetching updated video details:', error);
+        // Handle the error, display a message to the user, or log more details
+      }
     );
   }
 
