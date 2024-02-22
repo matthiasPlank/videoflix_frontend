@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../../services/video.service';
 import { NgOptimizedImage } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-video',
@@ -19,13 +20,10 @@ export class VideoComponent {
   myVideo!: ElementRef;
   private apiUrl = 'http://127.0.0.1:8000/video';
 
-
-
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params["id"];
-    /*this.video = this.videoService.getVideoByID(id); */
     this.video = this.videoService.getVideoByID(id);
 
     if (this.video.id == "") {
@@ -40,23 +38,16 @@ export class VideoComponent {
           console.log('error', error);
         })
     }
-    //console.log("Video to play:");
-    //console.log(this.video);
   }
 
   switchToQuality(quality: number): void {
-    const id = this.route.snapshot.params["id"];
-    const endpoint = `${this.apiUrl}/${this.video.id}/${quality}p/`;
+  
+    const videoURL = this.video.video_file ; 
+    const sublength:number = videoURL.length - 4 ; 
+    const newVideoURL = videoURL.substring( 0 , sublength ) + `_` + quality + `p.mp4`; 
 
-    this.http.get(endpoint).subscribe(
-      (response: any) => {
-        console.log(`Switched to ${quality}p successfully`);
-        // Handle the response as needed, update video source, etc.
-      },
-      (error: any) => {
-        console.error(`Error switching to ${quality}p:`, error);
-      }
-    );
+    let videoSource = document.getElementById("videoSource")?.setAttribute("src" , newVideoURL ) ; 
+    this.myVideo.nativeElement.load();
   }
 }
 

@@ -1,6 +1,6 @@
 <div id="video-page-container">
-            <video #myVideo controls>
-                <source src="{{video.video_file}}" type="video/mp4">
+            <video #myVideo controls autoplay>
+                <source id="videoSource" src="{{video.video_file}}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <button (click)="switchToQuality(480)">Switch to 480p</button>

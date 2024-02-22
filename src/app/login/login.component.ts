@@ -42,6 +42,10 @@ export class LoginComponent {
     this.passwordReset = true; 
   }
 
+  showLogin(){
+    this.showRegister = false; 
+    this.passwordReset = false; 
+  }
 
   
 }

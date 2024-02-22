@@ -11,8 +11,8 @@
             <mat-form-field>
                 <mat-label>Enter your password</mat-label>
                 <input matInput [type]="hideLoginPW ? 'password' : 'text'" formControlName="password">
-                <button mat-icon-button matSuffix (click)="hideLoginPW = !hideLoginPW" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hideLoginPW">
+                <button mat-icon-button matSuffix (click)="hideLoginPW = !hideLoginPW"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideLoginPW">
                     <mat-icon>{{hideLoginPW ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>

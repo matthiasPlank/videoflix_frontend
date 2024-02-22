@@ -6,7 +6,7 @@
     </div>
  
     <app-login-form *ngIf="!showRegister && !passwordReset" class="formcontainer" (showReg)="showReg()" (showPWReset)="showPWReset()"></app-login-form>
-    <app-register-form *ngIf="showRegister && !passwordReset" class="formcontainer"></app-register-form>
-    <app-forget-password *ngIf="!showRegister && passwordReset" class="formcontainer"></app-forget-password>
+    <app-register-form *ngIf="showRegister && !passwordReset" class="formcontainer" (showLogin)="showLogin()"></app-register-form>
+    <app-forget-password *ngIf="!showRegister && passwordReset" class="formcontainer" (showLogin)="showLogin()"></app-forget-password>
 
 </div>

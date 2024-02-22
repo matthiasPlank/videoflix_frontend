@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +19,8 @@ export class ForgetPasswordComponent {
   resetPasswordForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
   });
+
+  @Output() showLogin = new EventEmitter<string>();
 
 
   constructor(
@@ -42,6 +44,10 @@ export class ForgetPasswordComponent {
       )
     }
 
+  }
+
+  backToLogin(){
+      this.showLogin.emit(""); 
   }
 
 }

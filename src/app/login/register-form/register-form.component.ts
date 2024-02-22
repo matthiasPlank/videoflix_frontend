@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import {MatInputModule} from '@angular/material/input';
@@ -25,7 +25,8 @@ export class RegisterFormComponent {
     password: new FormControl('' , [Validators.required, Validators.minLength(4)]),
     confirmPassword: new FormControl('', [Validators.required , Validators.minLength(4)]),
   });
-  showRegister = false; 
+ 
+  @Output() showLogin = new EventEmitter<string>();
 
   hideLoginPW = true;
   hideRegisterPW = true;
@@ -62,7 +63,7 @@ export class RegisterFormComponent {
 
   
   backToLogin(){
-
+      this.showLogin.emit(""); 
   }
 
 
