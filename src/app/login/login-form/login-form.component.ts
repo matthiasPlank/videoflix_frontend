@@ -52,17 +52,19 @@ export class LoginFormComponent {
     console.log(username);
     if(username != null && password != null){
       this.authService.getToken( username , password )
-      .subscribe( (response: any)  => {
+      .subscribe({
+        next: (response:any) => {
           console.log("Sucessfull:");
           console.log(response.token); 
           localStorage.setItem("token" , response.token)
           this.router.navigate(['/home']);
-      } ,  
-          err => {
-            console.log('HTTP Error', err); 
-            this.loginFailed = true
-          }
-      )
+        },
+        error: (err) => {
+          console.log('HTTP Error', err); 
+          this.loginFailed = true
+        },
+        complete: () => console.info('complete') 
+      })
     }
   }
 
