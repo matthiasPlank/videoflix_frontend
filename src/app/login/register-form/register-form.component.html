@@ -26,6 +26,10 @@
                 </button>
             </mat-form-field>
 
+            <div class="form-error" id="register-form-error" *ngIf="loginFailed">
+                <span *ngFor="let message of loginFailedMessage; index as i;">{{message}}</span>
+            </div>
+            
             <div id="register-form-btn">
                 <button mat-raised-button class="gray-btn" type="button" (click)="backToLogin()">Back to Login</button>
                 <button mat-raised-button class="red-btn" type="submit" [disabled]="!RegisterForm.valid">Register</button>
