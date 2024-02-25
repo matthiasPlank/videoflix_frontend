@@ -20,14 +20,21 @@ export class HomeComponent {
 
     constructor(private videoService: VideoService) {
         this.fetchVideos();
-      }
-      
-      async fetchVideos() {
+    }
+
+    async fetchVideos() {
         try {
-          this.videos = await this.videoService.getAllVideos();
-          console.log(this.videos); 
+            this.videos = await this.videoService.getAllVideos();
+            console.log(this.videos);
         } catch (error) {
-          console.error("An error occurred while fetching videos:", error);
+            console.error("An error occurred while fetching videos:", error);
         }
-      }
+    }
+
+    getFilteredVideos(genre:string){
+        const filteredVideos = this.videos.filter((video) => video.genre == genre);
+        return filteredVideos
+    }
+
+    
 }

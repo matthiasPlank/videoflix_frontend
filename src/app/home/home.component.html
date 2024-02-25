@@ -4,7 +4,19 @@
     [categoryName]="'All Videos'"
     [categoryVideos]="videos">
 </app-category>
+<app-category
+    [categoryName]="'Documentary'"
+    [categoryVideos]="getFilteredVideos('Documentary')">
+</app-category>
+<app-category
+    [categoryName]="'Action'"
+    [categoryVideos]="getFilteredVideos('Action')">
+</app-category>
 
+<app-category
+    [categoryName]="'Horror'"
+    [categoryVideos]="getFilteredVideos('Horror')">
+</app-category>
 
 
 

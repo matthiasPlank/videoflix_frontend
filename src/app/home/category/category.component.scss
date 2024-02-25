@@ -1,46 +1,75 @@
-#category{
-   
-    #category-video{
-        display: flex;    
-        gap:24px; 
-        overflow-x: scroll;
-        max-width: 100vw;
-        padding: 24px;
+#category {
 
-        #category-video-item{
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0px;
+        height: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #DC1B27;;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #740f16;;
+    }
+
+    #category-name{
+        padding-left: 30px;
+    }
+
+    #category-video {
+        display: flex;
+        gap: 24px;
+        overflow: auto;
+     
+        max-width: 100vw;
+        padding: 0px 24px 24px 24px;
+
+        #category-video-item {
             display: flex;
             flex-direction: column;
             position: relative;
-         
-            img{
+
+            img {
                 width: 320px;
                 height: 210px;
                 object-fit: cover;
-               
+
             }
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 transform: scale(1.05);
-                #category-video-item-play-button{
-                    display: flex !important; 
-                    
+
+                #category-video-item-play-button {
+                    display: flex !important;
+
                 }
             }
-            #category-video-item-play-button{
+
+            #category-video-item-play-button {
                 position: absolute;
                 display: none;
-                top:0px; 
+                top: 0px;
                 left: 0px;
                 width: 100%;
                 justify-content: center;
                 align-items: center;
                 opacity: 60%;
-               
-                img{
+
+                img {
                     filter: invert(1);
                     object-fit: scale-down;
                     width: 20%;
-                   
+
                 }
             }
         }

@@ -1,6 +1,9 @@
 <div id="category" *ngIf="categoryVideos.length > 0">
-    {{categoryName}}
-    <div id="category-video" >
+    <div id="category-name">
+       <h1>{{categoryName}}</h1>
+    </div>
+ <!--    <div id="category-video" #categoryVideoDiv (wheel)="onScroll($event)" > -->
+    <div id="category-video" #categoryVideoDiv >
         <div id="category-video-item" *ngFor="let video of categoryVideos; index as i;" (click)="openVideo(video.id)">
           
             <img src="{{video.poster_file}}">

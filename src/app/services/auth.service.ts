@@ -34,6 +34,7 @@ export class AuthService {
    * @returns 
    */
   register(email:string, password:string , confirmPassword: string , user:string){    
+    localStorage.removeItem("token");
     return this.httpClient.request('POST' , this.backendURL + "/register/" , {
       body: JSON.stringify({
         username: user,
