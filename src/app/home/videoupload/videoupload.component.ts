@@ -24,7 +24,7 @@ export class VideouploadComponent implements OnDestroy {
   video_file!: File;
   poster_file!: File;
   genre: string = "";
-  isModalVisible: boolean = false;
+  isModalVisible: boolean = true;
   private modalSubscription: Subscription;
   video_480p_file: string | null = null;
   video_720p_file: string | null = null;
@@ -76,13 +76,13 @@ export class VideouploadComponent implements OnDestroy {
     uploadData.append('video_file', this.video_file);
     uploadData.append('poster_file', this.poster_file);
     uploadData.append('genre', this.genre);
-    if (this.video_480p_file !== null) {
-      uploadData.append('video_480p_file', this.video_480p_file);
-    }
+    // if (this.video_480p_file !== null) {
+    //   uploadData.append('video_480p_file', this.video_480p_file);
+    // }
 
-    if (this.video_720p_file !== null) {
-      uploadData.append('video_720p_file', this.video_720p_file);
-    }
+    // if (this.video_720p_file !== null) {
+    //   uploadData.append('video_720p_file', this.video_720p_file);
+    // }
     this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
       (data: any) => {
         console.log('Success:', data);
