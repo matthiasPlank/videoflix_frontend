@@ -22,32 +22,32 @@ export class VideoComponent {
 
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     const id = this.route.snapshot.params["id"];
     this.video = this.videoService.getVideoByID(id);
 
     if (this.video.id == "") {
-      this.videoService.getVideoFromBackeendByID(id)
-        .then(response => {
-          console.log(response)
-          this.video = response;
-          console.log('VIDEO:', this.video);
-          this.myVideo.nativeElement.load();
-        })
-        .catch(error => {
-          console.log('error', error);
-        })
+      await this.getVideoFromBackend(id);
     }
   }
 
   switchToQuality(quality: number): void {
-  
-    const videoURL = this.video.video_file ; 
-    const sublength:number = videoURL.length - 4 ; 
-    const newVideoURL = videoURL.substring( 0 , sublength ) + `_` + quality + `p.mp4`; 
+    const videoURL = this.video.video_file;
+    const sublength: number = videoURL.length - 4;
+    const newVideoURL = videoURL.substring(0, sublength) + `_` + quality + `p.mp4`;
 
-    let videoSource = document.getElementById("videoSource")?.setAttribute("src" , newVideoURL ) ; 
+    let videoSource = document.getElementById("videoSource")?.setAttribute("src", newVideoURL);
     this.myVideo.nativeElement.load();
+  }
+
+
+  async getVideoFromBackend(id: string) {
+    try{
+      this.video = await this.videoService.getVideoFromBackeendByID(id); 
+      this.myVideo.nativeElement.load();
+    } catch (error) {
+          console.error("An error occurred while fetching videos:", error);
+    }
   }
 }
 

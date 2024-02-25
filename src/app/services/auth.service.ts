@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root', 
 })
 export class AuthService {
 
@@ -74,4 +74,21 @@ export class AuthService {
       headers: new HttpHeaders({'Content-Type' : 'application/json'})
     } )  
   }
+
+  /**
+   * Returns whether the user is logged in or not 
+   * 
+   * @returns {boolean}
+   */
+    isLoggedIn(): boolean {
+      const token = localStorage.getItem('token')
+      return token !== null && token != "" ? true : false;
+    }
+
+    getAuthorizationToken(){
+      return localStorage.getItem("token"); 
+    }
+
+
+
 }

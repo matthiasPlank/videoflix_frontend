@@ -19,16 +19,15 @@ export class HomeComponent {
     videos: Video[] = [];
 
     constructor(private videoService: VideoService) {
-        this.videoService.getAllVideos()
-            .then(result => {
-                this.videos = result;
-                //console.log(this.videos);
-            })
-            .catch(error => {
-                console.error("An error occurred while fetching videos:", error);
-            });
-    }
-
-
-
+        this.fetchVideos();
+      }
+      
+      async fetchVideos() {
+        try {
+          this.videos = await this.videoService.getAllVideos();
+          console.log(this.videos); 
+        } catch (error) {
+          console.error("An error occurred while fetching videos:", error);
+        }
+      }
 }

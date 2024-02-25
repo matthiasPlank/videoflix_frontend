@@ -1,18 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnDestroy  } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
 import { VideoUploadDialogComponent } from '../video-upload-dialog/video-upload-dialog.component';;
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-videoupload',
   standalone: true,
-  imports: [MatFormFieldModule, MatSelectModule, CommonModule],
+  imports: [MatFormFieldModule, MatSelectModule, CommonModule , MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, MatDialogModule],
   templateUrl: './videoupload.component.html',
   styleUrl: './videoupload.component.scss',
 })
