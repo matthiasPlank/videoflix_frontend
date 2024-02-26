@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
-import { VideoUploadDialogComponent } from '../video-upload-dialog/video-upload-dialog.component';;
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
@@ -87,7 +86,9 @@ export class VideouploadComponent implements OnDestroy {
       (data: any) => {
         console.log('Success:', data);
         // Update the frontend video_480p_file and video_720p_file values with the actual file paths
-        this.updateVideoFiles(data.id);
+        
+        //this.updateVideoFiles(data.id);
+        
         // ... (rest of the code)
       },
       (error) => {
@@ -102,6 +103,7 @@ export class VideouploadComponent implements OnDestroy {
     this.http.get(`http://127.0.0.1:8000/video/${videoId}`).subscribe(
       (data: any) => {
         // Update the video_480p_file and video_720p_file values in your component
+
         this.video_480p_file = data.video_480p_file;
         this.video_720p_file = data.video_720p_file;
       },

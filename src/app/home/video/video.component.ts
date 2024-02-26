@@ -5,11 +5,13 @@ import { VideoService } from '../../services/video.service';
 import { NgOptimizedImage } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import { debounceTime } from 'rxjs';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-video',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, MatButtonModule],
   templateUrl: './video.component.html',
   styleUrl: './video.component.scss'
 })
@@ -19,6 +21,7 @@ export class VideoComponent {
   @ViewChild('myVideo')
   myVideo!: ElementRef;
   private apiUrl = 'http://127.0.0.1:8000/video';
+  currentTime: number  = 0;
 
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient) { }
 
@@ -38,7 +41,24 @@ export class VideoComponent {
 
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", newVideoURL);
     this.myVideo.nativeElement.load();
+    this.myVideo.nativeElement.currentTime = this.currentTime; 
+    
   }
+
+  switchToOriginal(): void {
+    let videoSource = document.getElementById("videoSource")?.setAttribute("src", this.video.video_file);
+    this.myVideo.nativeElement.load();
+    this.myVideo.nativeElement.currentTime = this.currentTime; 
+
+    console.log("Current Time:");
+    console.log(this.currentTime);
+    
+  
+  }
+
+  setCurrentTime(data:any) {
+    this.currentTime = data.target.currentTime;
+ }
 
 
   async getVideoFromBackend(id: string) {

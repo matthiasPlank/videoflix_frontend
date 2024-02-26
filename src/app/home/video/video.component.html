@@ -1,8 +1,15 @@
 <div id="video-page-container">
-            <video #myVideo controls autoplay>
+            <div id="video-custom-controls">
+                <div id="video-custom-controls-quality">
+                    <button mat-raised-button (click)="switchToOriginal()">Switch to Original</button>
+                    <button mat-raised-button (click)="switchToQuality(480)">Switch to 480p</button>
+                    <button mat-raised-button (click)="switchToQuality(720)">Switch to 720p</button>
+                </div>
+            </div>
+
+            <video #myVideo controls autoplay (timeupdate)="setCurrentTime($event)">
                 <source id="videoSource" src="{{video.video_file}}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <button (click)="switchToQuality(480)">Switch to 480p</button>
-            <button (click)="switchToQuality(720)">Switch to 720p</button>
+            
 </div>
