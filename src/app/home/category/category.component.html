@@ -3,7 +3,16 @@
        <h1>{{categoryName}}</h1>
     </div>
  <!--    <div id="category-video" #categoryVideoDiv (wheel)="onScroll($event)" > -->
-    <div id="category-video" #categoryVideoDiv >
+    
+    <div id="category-video-move-left" class="category-video-move-icon" (click)="moveScrollbar('left')" *ngIf="currentScrollPos != 0">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back_ios"></mat-icon>
+    </div>
+    <div id="category-video-move-right" class="category-video-move-icon" (click)="moveScrollbar('rigth')" *ngIf="!isScrollbarAtEnd">
+        <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward_ios"></mat-icon>
+    </div>
+    
+    <div id="category-video" #categoryVideoDiv (scroll)="onScroll()">
+
         <div id="category-video-item" *ngFor="let video of categoryVideos; index as i;" (click)="openVideo(video.id)">
           
             <img src="{{video.poster_file}}">

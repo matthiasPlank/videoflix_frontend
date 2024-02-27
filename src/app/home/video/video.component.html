@@ -1,5 +1,8 @@
 <div id="video-page-container">
             <div id="video-custom-controls">
+                <div id="video-custom-controls-close">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close" (click)="backToHome()"></mat-icon>
+                </div>
                 <div id="video-custom-controls-quality">
                     <button mat-raised-button (click)="switchToOriginal()">Switch to Original</button>
                     <button mat-raised-button (click)="switchToQuality(480)">Switch to 480p</button>

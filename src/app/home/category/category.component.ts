@@ -3,11 +3,13 @@ import { Video } from '../../models/video.class';
 import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { timestamp } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, MatIconModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
@@ -18,15 +20,41 @@ export class CategoryComponent {
 
   lastScrol:number = 0; 
   scrollSpeed = 90; 
+  currentScrollPos:number = 0; 
+  scrollWidth:number = 800; 
+  isScrollbarAtEnd = false; 
   @ViewChild('categoryVideoDiv') categoryVideoDiv!: ElementRef<HTMLDivElement>;
 
   constructor(private router: Router) {
+ 
 
+  }
+  
+  ngAfterViewInit(){
+    this.onScroll()
   }
 
   openVideo(id: string) {
     console.log("open video with id:" + id);
     this.router.navigate(['/video', id]);
+  }
+
+  moveScrollbar(direction: string){
+    const divElement = this.categoryVideoDiv.nativeElement;
+    direction == "left" ? divElement.scrollTo(this.currentScrollPos-this.scrollWidth, 0) : divElement.scrollTo(this.currentScrollPos+this.scrollWidth, 0);
+    this.onScroll()
+  }
+
+  onScroll() {
+    const divElement = this.categoryVideoDiv.nativeElement;
+    this.currentScrollPos = divElement.scrollLeft ; 
+    //console.log("scrollWidth:" + divElement.scrollWidth);
+    //console.log("scrollleft:" + divElement.scrollLeft);
+    //console.log("clienWidth" + divElement.offsetWidth);
+    
+    this.isScrollbarAtEnd = ( divElement.scrollWidth - divElement.scrollLeft === divElement.clientWidth ) || ( divElement.scrollWidth == divElement.clientWidth);
+    //console.log(this.isScrollbarAtEnd );
+    
   }
 
   /*

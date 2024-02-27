@@ -1,6 +1,7 @@
 #video-page-container{
     width: 100vw;
     height: 100vh;
+   
 
     #video-custom-controls{
         position: fixed;
@@ -9,6 +10,10 @@
         width: 100%;
         z-index: 1;
         background-color: rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         #video-custom-controls-quality{
             padding: 12px;
             display: flex;
@@ -22,6 +27,12 @@
                     opacity: 0.5;
                     cursor: pointer;
                 }
+            }
+        }
+        #video-custom-controls-close{
+            padding-left: 24px;
+            &:hover{
+                cursor: pointer;
             }
         }
     }

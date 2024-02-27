@@ -17,6 +17,7 @@ import { CategoryComponent } from "./category/category.component";
 export class HomeComponent {
 
     videos: Video[] = [];
+    categories: string[] = []; 
 
     constructor(private videoService: VideoService) {
         this.fetchVideos();
@@ -26,9 +27,20 @@ export class HomeComponent {
         try {
             this.videos = await this.videoService.getAllVideos();
             console.log(this.videos);
+            this.setCatgories(); 
         } catch (error) {
             console.error("An error occurred while fetching videos:", error);
         }
+    }
+
+    setCatgories(){
+        this.videos.forEach(video => {
+            if(!this.categories.includes(video.genre)){
+                this.categories.push(video.genre); 
+            }
+        });
+        console.log(this.categories);
+        
     }
 
     getFilteredVideos(genre:string){
