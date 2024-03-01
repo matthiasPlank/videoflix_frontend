@@ -31,7 +31,10 @@ export class CategoryComponent {
   }
   
   ngAfterViewInit(){
-    this.onScroll()
+    setTimeout(() => {
+      this.onScroll(); // Modify component property after view initialization
+    });
+   
   }
 
   openVideo(id: string) {
