@@ -20,7 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 export class HeaderComponent {
 
 
-  
+
   constructor(private router:Router, public modalService: ModalService , public dialog: MatDialog){
 
   }
