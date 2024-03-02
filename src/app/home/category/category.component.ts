@@ -33,7 +33,7 @@ export class CategoryComponent {
   ngAfterViewInit(){
     setTimeout(() => {
       this.onScroll(); // Modify component property after view initialization
-    });
+    }, 1000 );
    
   }
 
@@ -49,14 +49,16 @@ export class CategoryComponent {
   }
 
   onScroll() {
-    const divElement = this.categoryVideoDiv.nativeElement;
-    this.currentScrollPos = divElement.scrollLeft ; 
-    //console.log("scrollWidth:" + divElement.scrollWidth);
-    //console.log("scrollleft:" + divElement.scrollLeft);
-    //console.log("clienWidth" + divElement.offsetWidth);
+
     
-    this.isScrollbarAtEnd = ( divElement.scrollWidth - divElement.scrollLeft === divElement.clientWidth ) || ( divElement.scrollWidth == divElement.clientWidth);
-    //console.log(this.isScrollbarAtEnd );
+    const divElement = this.categoryVideoDiv.nativeElement;
+      this.currentScrollPos = divElement.scrollLeft ; 
+      //console.log("scrollWidth:" + divElement.scrollWidth);
+      //console.log("scrollleft:" + divElement.scrollLeft);
+      //console.log("clienWidth" + divElement.offsetWidth);
+      this.isScrollbarAtEnd = ( divElement.scrollWidth - divElement.scrollLeft === divElement.clientWidth ) || ( divElement.scrollWidth == divElement.clientWidth);
+      //console.log(this.isScrollbarAtEnd );
+    
     
   }
 

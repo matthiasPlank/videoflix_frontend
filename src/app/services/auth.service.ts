@@ -19,6 +19,7 @@ export class AuthService {
    * @returns 
    */
   getToken(email:string, password:string){
+      localStorage.removeItem("token"); 
       return this.httpClient.request('POST' , this.backendURL + "/api-token-auth/" , {
         body: '{"email": "'+ email+ '", "password": "' + password + '"}',
         headers: new HttpHeaders({'Content-Type' : 'application/json'})

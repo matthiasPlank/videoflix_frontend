@@ -76,4 +76,11 @@ export class LoginFormComponent {
     this.showPWReset.emit(""); 
   }
 
+  goToPrivacyPolicy(){
+    this.router.navigate(['/privacy-policy', {}]);
+  }
+  goToImprint(){
+    this.router.navigate(['/imprint', {}]);
+  }
+
 }
