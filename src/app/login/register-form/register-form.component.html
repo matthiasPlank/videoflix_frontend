@@ -2,7 +2,7 @@
 <div id="register-content" class="content">
     <div class="form-container">
         <h2>Register</h2>
-        <form [formGroup]="RegisterForm" id="register-form" (ngSubmit)="register()" *ngIf="!showConfirmationEmailHint && !showSpinner">
+        <form [formGroup]="RegisterForm" id="register-form" (ngSubmit)="register()" *ngIf="!showConfirmationEmailHint && !showSpinner" (keydown.enter)="$event.preventDefault()">
 
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>

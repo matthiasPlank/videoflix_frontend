@@ -1,7 +1,7 @@
 <div id="login-content" class="content" *ngIf="!showRegister">
     <div class="form-container">
         <h2>LOGIN</h2>
-        <form [formGroup]="LoginForm" id="login-form" (ngSubmit)="login()">
+        <form [formGroup]="LoginForm" id="login-form" (ngSubmit)="login()" (keydown.enter)="$event.preventDefault()">
 
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>
@@ -11,7 +11,7 @@
             <mat-form-field>
                 <mat-label>Enter your password</mat-label>
                 <input matInput [type]="hideLoginPW ? 'password' : 'text'" formControlName="password">
-                <button mat-icon-button matSuffix (click)="hideLoginPW = !hideLoginPW"
+                <button mat-icon-button matSuffix (click)="hideLoginPW = !hideLoginPW" 
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideLoginPW">
                     <mat-icon>{{hideLoginPW ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -33,7 +33,7 @@
         </div>
         <div id="login-footer-container">
             <a (click)="goToPrivacyPolicy()">Datenschutz</a>
-            <a (click)="goToImprint()">Impressum</a>
+            <a (click)="goToPrivacyPolicy()">Impressum</a>
         </div>
     </div>
 </div>

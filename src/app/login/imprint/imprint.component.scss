@@ -1,0 +1,15 @@
+#imprint{
+
+    padding: 24px;
+
+    a{
+        color: white;
+    }
+    
+    #backIcon{
+        cursor: pointer;
+        &:hover{
+            color: #DC1B27;
+        }
+    }
+}
