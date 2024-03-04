@@ -7,8 +7,6 @@ export const httpInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const authToken = authService.getAuthorizationToken();
 
-  console.log("INTERCEPTOR")
-
   if(authToken != null){
     const authReq = req.clone({
       headers: req.headers.set('Authorization', 'Token ' + authToken)
@@ -18,5 +16,4 @@ export const httpInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   else{
     return next(req);
   }
-
 };

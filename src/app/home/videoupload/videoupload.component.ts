@@ -79,8 +79,6 @@ export class VideouploadComponent implements OnDestroy {
     this.genre = event.target.value
   }
 
-
-
   addVideo() {
     this.uploading = true;
     const uploadData = new FormData();

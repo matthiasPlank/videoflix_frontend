@@ -1,45 +1,65 @@
-#video-page-container{
+#video-page-container {
     width: 100vw;
     height: 100vh;
-   
 
-    #video-custom-controls{
+    #video-custom-controls {
         position: fixed;
         top: 0px;
         left: 0px;
         width: 100%;
         z-index: 1;
-        background-color: rgba(0,0,0,0.1);
+        background-color: rgba(0, 0, 0, 0.1);
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        #video-custom-controls-quality{
+        #video-custom-controls-quality {
             padding: 12px;
             display: flex;
             align-items: flex-end;
             justify-content: flex-end;
-            gap:12px; 
+            gap: 12px;
 
-            button{
+            button {
                 opacity: 0.2;
-                &:hover{
+
+                &:hover {
                     opacity: 0.5;
                     cursor: pointer;
                 }
             }
         }
-        #video-custom-controls-close{
+
+        #video-custom-controls-close {
             padding-left: 24px;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
             }
         }
     }
 
-
-    video{
-        width: 100%; 
+    video {
+        width: 100%;
         height: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #video-page-container {
+
+        #video-custom-controls {
+
+            #video-custom-controls-quality {
+                padding: 8px;
+                gap: 8px;
+
+                button {
+                    font-size: 10px;
+
+                }
+            }
+        }
     }
 }

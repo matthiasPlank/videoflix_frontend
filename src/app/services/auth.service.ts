@@ -79,7 +79,6 @@ export class AuthService {
 
   /**
    * Returns whether the user is logged in or not 
-   * 
    * @returns {boolean}
    */
     isLoggedIn(): boolean {
@@ -87,10 +86,11 @@ export class AuthService {
       return token !== null && token != "" ? true : false;
     }
 
+    /**
+     * Get auth-token from localstorage
+     * @returns token 
+     */
     getAuthorizationToken(){
       return localStorage.getItem("token"); 
     }
-
-
-
 }

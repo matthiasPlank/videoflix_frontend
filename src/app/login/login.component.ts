@@ -32,20 +32,27 @@ export class LoginComponent {
       private router:Router
       ){}
 
+  /**
+   * switch view to register
+   */
   showReg(){
     this.showRegister = true; 
     this.passwordReset = false; 
   }
 
+  /**
+   * switch view to password reset
+   */
   showPWReset(){
     this.showRegister = false; 
     this.passwordReset = true; 
   }
 
+  /**
+   * switch view to login
+   */
   showLogin(){
     this.showRegister = false; 
     this.passwordReset = false; 
   }
-
-  
 }

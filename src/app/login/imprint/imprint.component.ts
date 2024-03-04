@@ -14,8 +14,9 @@ export class ImprintComponent {
     private router:Router
     ){}
 
-
-
+  /**
+   * Go back to login
+   */
   backToLogin(){
     this.router.navigate(['/login', {}]);
   }

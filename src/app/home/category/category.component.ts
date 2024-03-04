@@ -26,62 +26,43 @@ export class CategoryComponent {
   @ViewChild('categoryVideoDiv') categoryVideoDiv!: ElementRef<HTMLDivElement>;
 
   constructor(private router: Router) {
- 
-
   }
   
+  /**
+   * Init scroll button
+   */
   ngAfterViewInit(){
     setTimeout(() => {
       this.onScroll(); // Modify component property after view initialization
     }, 1000 );
-   
   }
 
+  /**
+   * Open Video with given id
+   * @param id 
+   */
   openVideo(id: string) {
-    console.log("open video with id:" + id);
     this.router.navigate(['/video', id]);
   }
 
+  /**
+   * Scrolls category to givern direction by defined width
+   * @param direction - scroll direction
+   */
   moveScrollbar(direction: string){
     const divElement = this.categoryVideoDiv.nativeElement;
     direction == "left" ? divElement.scrollTo(this.currentScrollPos-this.scrollWidth, 0) : divElement.scrollTo(this.currentScrollPos+this.scrollWidth, 0);
     this.onScroll()
   }
 
+  /**
+   * Sets current scroll position and checks if scrollbar is at end. 
+   */
   onScroll() {
-
-    
     const divElement = this.categoryVideoDiv.nativeElement;
-      this.currentScrollPos = divElement.scrollLeft ; 
-      //console.log("scrollWidth:" + divElement.scrollWidth);
-      //console.log("scrollleft:" + divElement.scrollLeft);
-      //console.log("clienWidth" + divElement.offsetWidth);
-      this.isScrollbarAtEnd = ( divElement.scrollWidth - divElement.scrollLeft === divElement.clientWidth ) || ( divElement.scrollWidth == divElement.clientWidth);
-      //console.log(this.isScrollbarAtEnd );
-    
-    
+    this.currentScrollPos = divElement.scrollLeft ; 
+    this.isScrollbarAtEnd = ( divElement.scrollWidth - divElement.scrollLeft === divElement.clientWidth ) || ( divElement.scrollWidth == divElement.clientWidth);
   }
-
-  /*
-  @HostListener('mousewheel', ['$event']) // for window scroll events
-  onScroll(event:WheelEvent) {
-    console.log(event); 
-    const divElement = this.categoryVideoDiv.nativeElement;
-    if (divElement &&  ( event.timeStamp - this.lastScrol > 10)){
-      this.lastScrol = event.timeStamp; 
-      if (event.deltaY !== 0) {
-        if (event.deltaY > 0) {
-            // Scrolling to the right
-            divElement.scrollLeft += this.scrollSpeed; // Scroll down by 5 pixels
-        } else {
-            // Scrolling to the left
-            divElement.scrollLeft -= this.scrollSpeed;; // Scroll down by 5 pixels
-        }
-      }
-      
-    }
-  }
-  */ 
 
 }
 

@@ -8,8 +8,6 @@ import { MatDialog , MatDialogActions, MatDialogClose, MatDialogContent} from '@
 import { VideouploadComponent } from '../videoupload/videoupload.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
-
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -19,24 +17,29 @@ import {MatDialogModule} from '@angular/material/dialog';
 })
 export class HeaderComponent {
 
-
-
   constructor(private router:Router, public modalService: ModalService , public dialog: MatDialog){
 
   }
 
+  /**
+   * Trigger the openModal method from the service
+   */
   openModal() {
-    // Trigger the openModal method from the service
     this.modalService.openModal();
   }
 
+  /**
+   * Logout user by deleting auth token. 
+   */
   logout(){
     localStorage.removeItem("token");
     this.router.navigateByUrl("/login");
   }
 
+  /**
+   * open Videoupload Dialog. 
+   */
   openDialog() {
-    //this.modalService.openModal();
     this.dialog.open(VideouploadComponent);
   }
 }

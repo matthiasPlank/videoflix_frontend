@@ -9,9 +9,6 @@ export class Video {
     created_at: string
     genre : string
 
-
-
-
     constructor(obj?: any) {
        
         this.id = obj ? obj.id : "";
@@ -23,6 +20,5 @@ export class Video {
         this.created_at = obj ? obj.created_at : "";
         this.genre = obj ? obj.genre : "";
     }
-
-
+    
   }

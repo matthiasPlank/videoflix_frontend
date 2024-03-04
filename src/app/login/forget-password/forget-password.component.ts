@@ -51,7 +51,6 @@ export class ForgetPasswordComponent {
         error: (err) => {
           this.showSpinner = false; 
           this.sendForgetPasswordEmailFailed = true; 
-          console.log('HTTP Error', err);
           if(err.error.email[0]){
             this.errorMessage = err.error.email[0]; 
           }
@@ -67,5 +66,4 @@ export class ForgetPasswordComponent {
   backToLogin() {
     this.showLogin.emit("");
   }
-
 }

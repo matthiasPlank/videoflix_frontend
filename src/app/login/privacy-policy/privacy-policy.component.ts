@@ -10,13 +10,11 @@ import { Router } from '@angular/router';
 })
 export class PrivacyPolicyComponent {
 
-  constructor(
+  constructor( private router:Router){}
   
-    private router:Router
-    ){}
-
-
-
+  /**
+   * Go back to login
+   */
   backToLogin(){
     this.router.navigate(['/login', {}]);
   }

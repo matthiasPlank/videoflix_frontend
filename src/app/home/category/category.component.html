@@ -1,30 +1,26 @@
 <div id="category" *ngIf="categoryVideos.length > 0">
     <div id="category-name">
-       <h1>{{categoryName}}</h1>
+        <h1>{{categoryName}}</h1>
     </div>
- <!--    <div id="category-video" #categoryVideoDiv (wheel)="onScroll($event)" > -->
-    
-    <div id="category-video-move-left" class="category-video-move-icon" (click)="moveScrollbar('left')" *ngIf="currentScrollPos != 0">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back_ios"></mat-icon>
+
+    <div id="category-video-move-left" class="category-video-move-icon" (click)="moveScrollbar('left')"
+        *ngIf="currentScrollPos != 0">
+        <mat-icon class="category-video-move-icon-mat-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back_ios"></mat-icon>
     </div>
-    <div id="category-video-move-right" class="category-video-move-icon" (click)="moveScrollbar('rigth')" *ngIf="!isScrollbarAtEnd">
-        <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward_ios"></mat-icon>
+    <div id="category-video-move-right" class="category-video-move-icon" (click)="moveScrollbar('rigth')"
+        *ngIf="!isScrollbarAtEnd">
+        <mat-icon class="category-video-move-icon-mat-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward_ios"></mat-icon>
     </div>
-    
+
     <div id="category-video" #categoryVideoDiv (scroll)="onScroll()">
 
         <div id="category-video-item" *ngFor="let video of categoryVideos; index as i;" (click)="openVideo(video.id)">
-          
+
             <img src="{{video.poster_file}}">
             <div id="category-video-item-play-button">
                 <img src="assets/icons/play-button-icon.svg" alt="play">
             </div>
 
-            <!--     
-            <video width="320" height="240" controls>
-                <source src="{{video.video_file}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video> -->
         </div>
     </div>
 </div>
