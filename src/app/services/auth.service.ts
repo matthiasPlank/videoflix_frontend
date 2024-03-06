@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root', 
@@ -9,8 +9,10 @@ import { catchError } from 'rxjs';
 export class AuthService {
 
   backendURL:string = 'http://127.0.0.1:8000'; 
-
-  constructor(private httpClient: HttpClient) { }
+ 
+  constructor(private httpClient: HttpClient) { 
+    console.log(environment.production); // Logs false for development environment
+  }
 
   /**
    * Sends login credential to backend and receives token
