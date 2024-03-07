@@ -7,6 +7,7 @@ import { ModalService } from '../../services/modal.service';
 import { MatDialog , MatDialogActions, MatDialogClose, MatDialogContent} from '@angular/material/dialog';
 import { VideouploadComponent } from '../videoupload/videoupload.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 })
 export class HeaderComponent {
 
-  constructor(private router:Router, public modalService: ModalService , public dialog: MatDialog){
+  constructor(
+    private router:Router, 
+    public modalService: ModalService , 
+    public dialog: MatDialog, 
+    private authService: AuthService){
 
   }
 
@@ -32,7 +37,7 @@ export class HeaderComponent {
    * Logout user by deleting auth token. 
    */
   logout(){
-    localStorage.removeItem("token");
+    this.authService.clearLocalStroage(); 
     this.router.navigateByUrl("/login");
   }
 

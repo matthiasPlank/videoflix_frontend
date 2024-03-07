@@ -43,8 +43,6 @@ export class LoginFormComponent {
     private router:Router
     ){}
 
-
-    
   login(){
     const username = this.LoginForm.get("email")?.value; 
     const password = this.LoginForm.get("password")?.value; 
@@ -56,7 +54,7 @@ export class LoginFormComponent {
         next: (response:any) => {
           console.log("Sucessfull:");
           console.log(response.token); 
-          localStorage.setItem("token" , response.token)
+          this.authService.setLocalStorageItems(response.token, response.email); 
           this.router.navigate(['/home']);
         },
         error: (err) => {

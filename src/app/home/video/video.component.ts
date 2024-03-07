@@ -20,7 +20,6 @@ export class VideoComponent {
   video: Video = new Video();
   @ViewChild('myVideo')
   myVideo!: ElementRef;
-  private apiUrl = 'http://127.0.0.1:8000/video';
   currentTime: number = 0;
 
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient, private router: Router) { }

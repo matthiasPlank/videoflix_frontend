@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -37,6 +38,7 @@ export class VideouploadComponent implements OnDestroy {
   video_480p_file: string | null = null;
   video_720p_file: string | null = null;
   uploading: boolean = false;
+  backendURL = environment.apiUrl; 
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -88,7 +90,7 @@ export class VideouploadComponent implements OnDestroy {
     uploadData.append('poster_file', this.poster_file);
     uploadData.append('genre', this.genre);
 
-    this.http.post('http://127.0.0.1:8000/video/', uploadData).subscribe(
+    this.http.post(this.backendURL + '/video/', uploadData).subscribe(
       (data: any) => {
         console.log('Success:', data);
         const snackBarConfig: MatSnackBarConfig = {
@@ -132,7 +134,7 @@ export class VideouploadComponent implements OnDestroy {
 
   updateVideoFiles(videoId: number) {
     // Perform an API request to get the updated video details, including file paths
-    this.http.get(`http://127.0.0.1:8000/video/${videoId}`).subscribe(
+    this.http.get(this.backendURL + `/video/${videoId}`).subscribe(
       (data: any) => {
         // Update the video_480p_file and video_720p_file values in your component
 

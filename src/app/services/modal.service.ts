@@ -9,6 +9,9 @@ export class ModalService {
 
   openModal$ = this.openModalSource.asObservable();
 
+  /**
+   * Opens Modal
+   */
   openModal() {
     this.openModalSource.next();
   }

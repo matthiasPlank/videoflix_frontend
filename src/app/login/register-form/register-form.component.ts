@@ -22,8 +22,8 @@ export class RegisterFormComponent {
 
   RegisterForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
 
   @Output() showLogin = new EventEmitter<string>();
@@ -64,6 +64,13 @@ export class RegisterFormComponent {
           complete: () => console.info('complete')
         })
     }
+    else{
+      if(password != confirmPassword){
+        this.loginFailedMessage = [];
+        this.loginFailedMessage.push("Passwords are not equal");
+        this.loginFailed = true
+      }
+    }
   }
 
   /**
@@ -72,11 +79,12 @@ export class RegisterFormComponent {
    */
   successfullyRegistered(response: any) {
     this.showSpinner = false;
-    localStorage.setItem("token", response.token);
+    this.authService.setLocalStorageItems(response.token, response.email); 
     this.showConfirmationEmailHint = true;
     setTimeout(() => {
       this.showConfirmationEmailHint = false;
       this.router.navigate(['/login']);
+      this.showLogin.emit("");
     }, 3000);
   }
 
@@ -92,8 +100,9 @@ export class RegisterFormComponent {
    * @param err - HTTP Error
    */
   printErrorMessage(err: any) {
-    const pwError = err.error.password
-    const userError = err.error.username
+    const pwError = err.error.password; 
+    const userError = err.error.username; 
+    const emailError = err.error.email; 
 
     if (pwError != null) {
       pwError.forEach((errorMessage: any) => {
@@ -107,11 +116,13 @@ export class RegisterFormComponent {
         this.loginFailedMessage.push(errorMessage);
       });
     }
+    if (emailError != null) {
+      emailError.forEach((errorMessage: any) => {
+        console.log(errorMessage);
+        this.loginFailedMessage.push(errorMessage);
+      });
+    }
     this.showSpinner = false;
     this.loginFailed = true
   }
-
-
-
-
 }

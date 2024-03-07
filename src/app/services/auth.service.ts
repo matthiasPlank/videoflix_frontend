@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
 
-  backendURL:string = 'http://127.0.0.1:8000'; 
+  backendURL:string = environment.apiUrl; 
  
   constructor(private httpClient: HttpClient) { 
     console.log(environment.production); // Logs false for development environment
@@ -95,4 +95,22 @@ export class AuthService {
     getAuthorizationToken(){
       return localStorage.getItem("token"); 
     }
+
+    /**
+     * Removes token and email from localstorage
+     */
+    clearLocalStroage(){
+      localStorage.clear(); 
+    }
+
+    /**
+     * Sets the given parameter in localstorage
+     * @param token - token
+     * @param email - email 
+     */
+    setLocalStorageItems(token:string, email:string){
+      localStorage.setItem("token" , token);
+      localStorage.setItem("email" , email);
+    }
+
 }
