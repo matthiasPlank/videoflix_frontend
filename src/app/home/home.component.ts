@@ -47,8 +47,6 @@ export class HomeComponent {
                 this.categories.push(video.genre); 
             }
         });
-        console.log(this.categories);
-        
     }
 
     /**

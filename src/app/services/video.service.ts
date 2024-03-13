@@ -31,8 +31,10 @@ export class VideoService {
     };
   
     try {
-      const response$ = this.httpClient.get(this.backendURL + "/video/", requestOptions)
+      const response$ = this.httpClient.get(this.backendURL + "/video/", requestOptions); 
+      this.videos = await lastValueFrom(response$) as Video[];
       return  await lastValueFrom(response$) as Video[];
+
     } catch (error) {
       console.error("An error occurred while fetching videos:", error);
       throw error; // Rethrow the error to be caught by the caller
@@ -46,8 +48,10 @@ export class VideoService {
    * @returns video object 
    */
   getVideoByID(id:string){
-    this.getAllVideos(); 
+   
+    //this.getAllVideos(); 
     const vid = this.videos.find((video) => video.id == id); 
+    
     if(vid){
       return vid; 
     }
@@ -62,6 +66,7 @@ export class VideoService {
    * @returns vidoe object 
    */
   async getVideoFromBackeendByID(id:string){
+    
     const requestOptions = { 
       method: 'GET',
       headers: {
@@ -69,7 +74,7 @@ export class VideoService {
         } 
     } 
     try {
-      const response$ = this.httpClient.get(this.backendURL + "/video/" + id , requestOptions)
+      const response$ = this.httpClient.get(this.backendURL + "/video/" + id + "/", requestOptions)   
       return  await lastValueFrom(response$) as Video;
     } catch (error) {
       console.error("An error occurred while fetching videos:", error);

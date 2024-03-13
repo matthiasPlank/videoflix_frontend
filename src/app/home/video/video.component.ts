@@ -29,7 +29,7 @@ export class VideoComponent {
    */
   async ngOnInit() {
     const id = this.route.snapshot.params["id"];
-    this.video = this.videoService.getVideoByID(id);
+    this.video = await this.videoService.getVideoByID(id);
 
     if (this.video.id == "") {
       await this.getVideoFromBackend(id);
