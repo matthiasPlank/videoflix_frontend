@@ -23,6 +23,7 @@ export class VideoComponent {
   myVideo!: ElementRef;
   currentTime: number = 0;
   isSelectedVideoAvailable: boolean = false;
+  checkAvailabilityCurrently = false; 
 
 
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient, private router: Router) { }
@@ -94,13 +95,16 @@ export class VideoComponent {
   }
 
   checkVideoAvailability(src: string) {
+    this.checkAvailabilityCurrently = true; 
     this.http.head(src)
       .subscribe({
         next: (v) => {
           this.isSelectedVideoAvailable =  true;
+          this.checkAvailabilityCurrently = false; 
         },
         error: (e) => {
           this.isSelectedVideoAvailable = false;
+          this.checkAvailabilityCurrently = false; 
           console.error(e);
         }
     })
