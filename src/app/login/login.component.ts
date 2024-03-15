@@ -32,6 +32,10 @@ export class LoginComponent {
       private router:Router
       ){}
 
+  ngOnInit(){
+    this.checkAutologin(); 
+  }    
+
   /**
    * switch view to register
    */
@@ -54,5 +58,25 @@ export class LoginComponent {
   showLogin(){
     this.showRegister = false; 
     this.passwordReset = false; 
+  }
+
+
+  /**
+  * Checks if localstorage token is valid and redirects ti home page if user is logged in. 
+  */
+  checkAutologin(){
+    this.authService.checkAutoLogin()
+      .subscribe({
+        next: (response:any) => {
+          if (response.valid) {
+            this.router.navigateByUrl("home"); 
+          }
+        },
+        error: (e) => {
+          if(!(e.message == "No Data in localstorage")) {
+            console.error(e)
+          }
+        }
+    })
   }
 }

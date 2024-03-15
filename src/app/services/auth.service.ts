@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -113,4 +113,25 @@ export class AuthService {
       localStorage.setItem("email" , email);
     }
 
+    /**
+     * Checks if localstorage token is valid. 
+     * @returns Observable
+     */
+    checkAutoLogin(){
+      const token = localStorage.getItem("token"); 
+      const email = localStorage.getItem("email"); 
+      
+      if(token != "" && token != null && email != "" && email != null){
+        return this.httpClient.request('POST' , this.backendURL + "/checkToken/" , {
+          body: JSON.stringify({
+            email : email,
+            token : token 
+          }),
+          headers: new HttpHeaders({'Content-Type' : 'application/json'})
+        } )  
+      }
+      else{
+        return throwError(() => new Error("No Data in localstorage"));
+      }
+    }
 }

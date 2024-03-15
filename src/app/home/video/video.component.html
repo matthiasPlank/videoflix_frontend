@@ -9,10 +9,15 @@
                     <button mat-raised-button (click)="switchToQuality(720)">Switch to 720p</button>
                 </div>
             </div>
+            <div *ngIf="isSelectedVideoAvailable" id="video-container">
+                <video #myVideo controls autoplay (timeupdate)="setCurrentTime($event)">
+                    <source id="videoSource" src="{{video.video_file}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
 
-            <video #myVideo controls autoplay (timeupdate)="setCurrentTime($event)">
-                <source id="videoSource" src="{{video.video_file}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            
+            <div  *ngIf="!isSelectedVideoAvailable" id="video-container-not-available">
+                <h1>Video is not available</h1>
+                <span>If you uploaded video recently, maybe it is currently converting - please try again later</span>
+            </div>  
 </div>

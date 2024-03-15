@@ -2,16 +2,17 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Video } from '../../models/video.class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideoService } from '../../services/video.service';
-import { NgOptimizedImage } from '@angular/common'
+import { NgIf, NgOptimizedImage } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import { debounceTime } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+
 @Component({
   selector: 'app-video',
   standalone: true,
-  imports: [NgOptimizedImage, MatButtonModule, MatIconModule],
+  imports: [NgOptimizedImage, MatButtonModule, MatIconModule, NgIf],
   templateUrl: './video.component.html',
   styleUrl: './video.component.scss'
 })
@@ -21,6 +22,8 @@ export class VideoComponent {
   @ViewChild('myVideo')
   myVideo!: ElementRef;
   currentTime: number = 0;
+  isSelectedVideoAvailable: boolean = false;
+
 
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient, private router: Router) { }
 
@@ -34,6 +37,7 @@ export class VideoComponent {
     if (this.video.id == "") {
       await this.getVideoFromBackend(id);
     }
+    this.checkVideoAvailability(this.video.video_file) ;
   }
 
   /**
@@ -46,6 +50,7 @@ export class VideoComponent {
     const newVideoURL = videoURL.substring(0, sublength) + `_` + quality + `p.mp4`;
 
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", newVideoURL);
+    this.checkVideoAvailability(newVideoURL) ;
     this.myVideo.nativeElement.load();
     this.myVideo.nativeElement.currentTime = this.currentTime;
   }
@@ -55,6 +60,7 @@ export class VideoComponent {
    */
   switchToOriginal(): void {
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", this.video.video_file);
+    this.checkVideoAvailability(this.video.video_file) ;
     this.myVideo.nativeElement.load();
     this.myVideo.nativeElement.currentTime = this.currentTime;
   }
@@ -85,6 +91,19 @@ export class VideoComponent {
    */
   backToHome() {
     this.router.navigateByUrl("/home");
+  }
+
+  checkVideoAvailability(src: string) {
+    this.http.head(src)
+      .subscribe({
+        next: (v) => {
+          this.isSelectedVideoAvailable =  true;
+        },
+        error: (e) => {
+          this.isSelectedVideoAvailable = false;
+          console.error(e);
+        }
+    })
   }
 }
 

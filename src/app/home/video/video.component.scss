@@ -39,8 +39,20 @@
         }
     }
 
-    video {
+    #video-container{
         width: 100%;
+        height: 100%;
+
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    #video-container-not-available{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         height: 100%;
     }
 }
