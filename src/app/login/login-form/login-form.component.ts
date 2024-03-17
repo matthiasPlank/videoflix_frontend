@@ -47,21 +47,17 @@ export class LoginFormComponent {
     const username = this.LoginForm.get("email")?.value; 
     const password = this.LoginForm.get("password")?.value; 
 
-    console.log(username);
     if(username != null && password != null){
       this.authService.getToken( username , password )
       .subscribe({
         next: (response:any) => {
-          console.log("Sucessfull:");
-          console.log(response.token); 
           this.authService.setLocalStorageItems(response.token, response.email); 
           this.router.navigate(['/home']);
         },
         error: (err) => {
-          console.log('HTTP Error', err); 
+          console.error('HTTP Error', err); 
           this.loginFailed = true
-        },
-        complete: () => console.info('complete') 
+        }
       })
     }
   }

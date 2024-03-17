@@ -46,12 +46,13 @@ export class VideoComponent {
    * @param quality - quality level (480, 720)
    */
   switchToQuality(quality: number): void {
+    
     const videoURL = this.video.video_file;
     const sublength: number = videoURL.length - 4;
     const newVideoURL = videoURL.substring(0, sublength) + `_` + quality + `p.mp4`;
-
+    //this.checkVideoAvailability(newVideoURL) ;
+    
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", newVideoURL);
-    this.checkVideoAvailability(newVideoURL) ;
     this.myVideo.nativeElement.load();
     this.myVideo.nativeElement.currentTime = this.currentTime;
   }
@@ -60,8 +61,9 @@ export class VideoComponent {
    * Changes video url path in html template and shows original video resolution.
    */
   switchToOriginal(): void {
+    
+    //this.checkVideoAvailability(this.video.video_file) ;
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", this.video.video_file);
-    this.checkVideoAvailability(this.video.video_file) ;
     this.myVideo.nativeElement.load();
     this.myVideo.nativeElement.currentTime = this.currentTime;
   }
@@ -94,6 +96,10 @@ export class VideoComponent {
     this.router.navigateByUrl("/home");
   }
 
+  /**
+   * Checks if video file path is available
+   * @param src - video path
+   */
   checkVideoAvailability(src: string) {
     this.checkAvailabilityCurrently = true; 
     this.http.head(src)
@@ -108,7 +114,7 @@ export class VideoComponent {
           console.error(e);
         }
     })
-  }
+  } 
 }
 
 

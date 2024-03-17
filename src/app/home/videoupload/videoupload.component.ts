@@ -92,7 +92,6 @@ export class VideouploadComponent implements OnDestroy {
 
     this.http.post(this.backendURL + '/video/', uploadData).subscribe(
       (data: any) => {
-        console.log('Success:', data);
         const snackBarConfig: MatSnackBarConfig = {
           duration: 3000,
           horizontalPosition: 'center',

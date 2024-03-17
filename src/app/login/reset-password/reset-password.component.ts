@@ -53,14 +53,12 @@ export class ResetPasswordComponent {
       this.authService.changePassword(password, this.token)
       .subscribe({
         next: (response:any) => {
-          console.log("Sucessfull: change password");
           this.router.navigate(['/home']);
         },
         error: (err) => {
-          console.log('HTTP Error', err); 
+          console.error('HTTP Error', err); 
           this.printErrorMessage(err); 
-        },
-        complete: () => console.info('complete') 
+        }
       })
     }
     else{
@@ -80,13 +78,13 @@ export class ResetPasswordComponent {
 
     if (pwError != null) {
       pwError.forEach((errorMessage: any) => {
-        console.log(errorMessage);
+        console.error(errorMessage);
         this.errorMessage.push(errorMessage);
       });
     }
     if (userError != null) {
       userError.forEach((errorMessage: any) => {
-        console.log(errorMessage);
+        console.error(errorMessage);
         this.errorMessage.push(errorMessage);
       });
     }

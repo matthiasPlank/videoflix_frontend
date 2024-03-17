@@ -10,8 +10,8 @@ export class AuthService {
 
   backendURL:string = environment.apiUrl; 
  
-  constructor(private httpClient: HttpClient) { 
-    console.log(environment.production); // Logs false for development environment
+  constructor(private httpClient: HttpClient){
+     
   }
 
   /**
@@ -120,8 +120,8 @@ export class AuthService {
     checkAutoLogin(){
       const token = localStorage.getItem("token"); 
       const email = localStorage.getItem("email"); 
-      
-      if(token != "" && token != null && email != "" && email != null){
+
+      if(token != "" && token != null && token != "undefined" && email != "" && email != null && email != "undefined"){
         return this.httpClient.request('POST' , this.backendURL + "/checkToken/" , {
           body: JSON.stringify({
             email : email,
@@ -131,6 +131,7 @@ export class AuthService {
         } )  
       }
       else{
+        this.clearLocalStroage(); 
         return throwError(() => new Error("No Data in localstorage"));
       }
     }

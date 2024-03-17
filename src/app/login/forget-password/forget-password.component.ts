@@ -54,8 +54,7 @@ export class ForgetPasswordComponent {
           if(err.error.email[0]){
             this.errorMessage = err.error.email[0]; 
           }
-        },
-        complete: () => console.info('complete') 
+        }
       })
     }
   }
