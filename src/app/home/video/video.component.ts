@@ -22,9 +22,10 @@ export class VideoComponent {
   @ViewChild('myVideo')
   myVideo!: ElementRef;
   currentTime: number = 0;
-  isSelectedVideoAvailable: boolean = false;
   checkAvailabilityCurrently = false; 
-
+  isVideoAvailable = false; 
+  isVideoAvailable_480p = false; 
+  isVideoAvailable_720p = false; 
 
   constructor(private route: ActivatedRoute, private videoService: VideoService, private http: HttpClient, private router: Router) { }
 
@@ -38,7 +39,15 @@ export class VideoComponent {
     if (this.video.id == "") {
       await this.getVideoFromBackend(id);
     }
-    this.checkVideoAvailability(this.video.video_file) ;
+    await this.checkVideoAvailability(this.video.video_file).then((result) => { 
+      this.isVideoAvailable = result; 
+    });
+    await this.checkVideoAvailability(this.getFilePathforVideo(this.video.video_file , "480")).then((result) => { 
+      this.isVideoAvailable_480p = result; 
+    });
+    await this.checkVideoAvailability(this.getFilePathforVideo(this.video.video_file , "720")).then((result) => { 
+      this.isVideoAvailable_720p = result; 
+    });
   }
 
   /**
@@ -50,7 +59,6 @@ export class VideoComponent {
     const videoURL = this.video.video_file;
     const sublength: number = videoURL.length - 4;
     const newVideoURL = videoURL.substring(0, sublength) + `_` + quality + `p.mp4`;
-    //this.checkVideoAvailability(newVideoURL) ;
     
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", newVideoURL);
     this.myVideo.nativeElement.load();
@@ -62,7 +70,6 @@ export class VideoComponent {
    */
   switchToOriginal(): void {
     
-    //this.checkVideoAvailability(this.video.video_file) ;
     let videoSource = document.getElementById("videoSource")?.setAttribute("src", this.video.video_file);
     this.myVideo.nativeElement.load();
     this.myVideo.nativeElement.currentTime = this.currentTime;
@@ -100,21 +107,40 @@ export class VideoComponent {
    * Checks if video file path is available
    * @param src - video path
    */
-  checkVideoAvailability(src: string) {
-    this.checkAvailabilityCurrently = true; 
-    this.http.head(src)
-      .subscribe({
-        next: (v) => {
-          this.isSelectedVideoAvailable =  true;
-          this.checkAvailabilityCurrently = false; 
-        },
-        error: (e) => {
-          this.isSelectedVideoAvailable = false;
-          this.checkAvailabilityCurrently = false; 
-          console.error(e);
-        }
-    })
-  } 
+  async checkVideoAvailability(src: string): Promise<boolean> {
+    this.checkAvailabilityCurrently = true;
+
+    return new Promise<boolean>((resolve, reject) => {
+        this.http.head(src)
+            .subscribe({
+                next: (v) => {
+                    this.checkAvailabilityCurrently = false;
+                    resolve(true);
+                },
+                error: (e) => {
+                    this.checkAvailabilityCurrently = false;
+                    console.error(e);
+                    resolve(false);
+                }
+            });
+    });
+}
+
+
+  getFilePathforVideo(path:string , quality: string){
+    const sublength: number = path.length - 4;
+    return path.substring(0, sublength) + `_` + quality + `p.mp4`;
+  }
+
+  canplay(event: Event){
+    console.log("CanPlay Event:")
+    console.log(event);
+  }
+
+  errorDuringPlay(event: Event){
+    console.log("Error Event:")
+    console.log(event);
+  }
 }
 
 
