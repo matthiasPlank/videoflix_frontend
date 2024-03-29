@@ -1,0 +1,17 @@
+<div id="topVideo-container" >
+    <div id="overlay-horizontal"></div>
+    <div id="overlay-vertical"></div>
+    <div id="video-information-container" *ngIf="currentVideo">
+        <h1>{{currentVideo.title}}</h1>
+        <h3>{{currentVideo.description}}</h3>
+        <div>
+            <button mat-raised-button class="red-btn" (click)="openVideo(currentVideo.id)">Play</button>
+        </div>
+    </div>
+    <div *ngIf="topVideos.length > 0 && currentVideo" class="video-container">
+        <video #topVideo autoplay [muted]="true">
+            <source id="topVideoSource" src="{{currentVideo.video_file}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>

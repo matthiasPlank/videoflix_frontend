@@ -1,13 +1,11 @@
 <app-header></app-header>
 
-<app-category
-    [categoryName]="'All Videos'"
-    [categoryVideos]="videos">
-</app-category>
-<app-category *ngFor="let category of categories;" 
-    [categoryName]="category"
-    [categoryVideos]="getFilteredVideos(category)">
-</app-category>
+<app-top-movie *ngIf="topVideos.length > 0" [topVideos]="topVideos"></app-top-movie>
 
-
-
+<div id="video-categories">
+    <app-category [categoryName]="'All Videos'" [categoryVideos]="videos">
+    </app-category>
+    <app-category *ngFor="let category of categories;" [categoryName]="category"
+        [categoryVideos]="getFilteredVideos(category)">
+    </app-category>
+</div>

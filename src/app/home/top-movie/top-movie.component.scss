@@ -1,0 +1,98 @@
+$topMovieWidth: 50%;
+
+#topVideo-container {
+    position: relative;
+    top: -30px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    min-height: 400px;
+    max-height: 400px;
+
+    #overlay-horizontal {
+        background-color: aqua;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: $topMovieWidth;
+        height: 100%;
+        background: rgb(20, 20, 20);
+        background: linear-gradient(-90deg, rgba(20, 20, 20, 0.2) 0%, rgba(20, 20, 20, 0.8) 50%, rgba(20, 20, 20, 1) 100%)
+    }
+
+    #overlay-vertical {
+        background-color: aqua;
+        position: absolute;
+        right: 0px;
+        width: $topMovieWidth;
+        height: 100%;
+        background: rgb(20, 20, 20);
+        background: linear-gradient(0deg, rgba(20, 20, 20, 1) 0%, rgba(20, 20, 20, 0.5) 40%, rgba(20, 20, 20, 0.5) 60%, rgba(20, 20, 20, 1) 100%);
+    }
+
+    .video-container {
+        width: $topMovieWidth;
+        display: flex;
+        justify-content: end;
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    #video-information-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            font-size: 64px;
+            margin-bottom: 6px;
+        }
+
+        h3 {
+            margin-top: 6px;
+        }
+
+        padding-top: 20px;
+        padding-left: 150px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #topVideo-container {
+
+
+        #video-information-container {
+        
+            h1 {
+                font-size: 32px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            padding-left: 50px;
+        }
+
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #topVideo-container {
+
+        #video-information-container {
+            display: flex;
+            gap:24px;
+            padding-top: 100px;
+            h3 {
+               display: none;
+            }
+      
+        }
+
+    }
+}

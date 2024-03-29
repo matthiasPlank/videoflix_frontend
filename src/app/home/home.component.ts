@@ -5,16 +5,20 @@ import { VideoService } from '../services/video.service';
 import { Video } from '../models/video.class';
 import { NgFor, NgIf } from '@angular/common';
 import { CategoryComponent } from "./category/category.component";
+import { ElementSchemaRegistry } from '@angular/compiler';
+import { TopMovieComponent } from "./top-movie/top-movie.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    imports: [HeaderComponent, VideouploadComponent, NgIf, NgFor, CategoryComponent]
+    imports: [HeaderComponent, VideouploadComponent, NgIf, NgFor, CategoryComponent, TopMovieComponent]
 })
 export class HomeComponent {
 
+    topVideos: Video[] = [];
+    topVideosCounter = 3; 
     videos: Video[] = [];
     categories: string[] = []; 
 
@@ -32,7 +36,8 @@ export class HomeComponent {
     async fetchVideos() {
         try {
             this.videos = await this.videoService.getAllVideos();
-            this.setCatgories(); 
+            this.setCatgories();
+            this.setTopVideos();  
         } catch (error) {
             console.error("An error occurred while fetching videos:", error);
         }
@@ -57,5 +62,21 @@ export class HomeComponent {
     getFilteredVideos(genre:string){
         const filteredVideos = this.videos.filter((video) => video.genre == genre);
         return filteredVideos
+    }
+
+
+    setTopVideos(){
+        if(this.videos.length > 0){
+            let counter = 0; 
+            this.videos.forEach(video => {
+                if(counter < this.topVideosCounter){
+                    this.topVideos.push(video); 
+                    counter++; 
+                }
+            });
+            console.log("Videos in HOME:")
+            console.log(this.topVideos)
+            this.topVideos = this.topVideos; 
+        }
     }
 }

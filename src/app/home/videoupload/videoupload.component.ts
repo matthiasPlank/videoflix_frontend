@@ -101,6 +101,9 @@ export class VideouploadComponent implements OnDestroy {
         this.dialogRef.close();
         this.uploading = false;
         this.snackBar.open('Video uploaded successfully!', 'Close', snackBarConfig);
+        setTimeout(() => {
+          window.location.reload();     
+        }, 3000);
       },
       (error) => {
         console.error('Error:', error);
@@ -146,31 +149,6 @@ export class VideouploadComponent implements OnDestroy {
       }
     );
   }
-
-  /*
-  refactoring option here:
-  onInputChanged(event: any, property: string) {
-    switch (property) {
-      case 'title':
-      case 'description':
-        this[property] = event.target.value;
-        break;
-      case 'video_file':
-      case 'poster_file':
-        this[property] = event.target.files[0];
-        break;
-      case 'created_at':
-        this[property] = new Date(event.target.value);
-        break;
-      case 'genre':
-        this.genre = event.target.value;
-        break;
-      default:
-        break;
-    }
-  }
-  */
-
 }
 
 

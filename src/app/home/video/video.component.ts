@@ -126,20 +126,9 @@ export class VideoComponent {
     });
 }
 
-
   getFilePathforVideo(path:string , quality: string){
     const sublength: number = path.length - 4;
     return path.substring(0, sublength) + `_` + quality + `p.mp4`;
-  }
-
-  canplay(event: Event){
-    console.log("CanPlay Event:")
-    console.log(event);
-  }
-
-  errorDuringPlay(event: Event){
-    console.log("Error Event:")
-    console.log(event);
   }
 }
 
