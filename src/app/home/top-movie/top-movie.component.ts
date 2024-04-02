@@ -38,23 +38,22 @@ export class TopMovieComponent {
     }, 10000); 
   }
 
-
+  /**
+   * Sets next video for preview
+   */
   setNextVideo(){
     if(this.topVideos.length == this.currentVideoIndex+1){
       this.currentVideoIndex = 0; 
-      this.currentVideo = this.topVideos[this.currentVideoIndex]; 
-      document.getElementById("topVideoSource")?.setAttribute("src", this.currentVideo.video_file);
-      this.topVideo.nativeElement.load();
     }
     else{
       this.currentVideoIndex++; 
-      this.currentVideo = this.topVideos[this.currentVideoIndex]; 
-      document.getElementById("topVideoSource")?.setAttribute("src", this.currentVideo.video_file);
-      this.topVideo.nativeElement.load();
     }
+    this.currentVideo = this.topVideos[this.currentVideoIndex]; 
+    document.getElementById("topVideoSource")?.setAttribute("src", this.currentVideo.video_file);
+    this.topVideo.nativeElement.load();
   }
 
-    /**
+   /**
    * Open Video with given id
    * @param id 
    */

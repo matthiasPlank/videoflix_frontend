@@ -65,6 +65,9 @@ export class HomeComponent {
     }
 
 
+    /**
+     * Set videos for header preview
+     */
     setTopVideos(){
         if(this.videos.length > 0){
             let counter = 0; 
@@ -74,8 +77,6 @@ export class HomeComponent {
                     counter++; 
                 }
             });
-            console.log("Videos in HOME:")
-            console.log(this.topVideos)
             this.topVideos = this.topVideos; 
         }
     }
