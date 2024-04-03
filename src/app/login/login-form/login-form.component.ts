@@ -24,7 +24,7 @@ export class LoginFormComponent {
 
   LoginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('' , [Validators.required, Validators.minLength(4)] ),
+    password: new FormControl('' , [Validators.required, Validators.minLength(8)] ),
   });
   hideLoginPW = true;
   hideRegisterPW = true;

@@ -65,6 +65,7 @@ export class RegisterFormComponent {
         })
     }
     else{
+      debugger
       if(password != confirmPassword){
         this.loginFailedMessage = [];
         this.loginFailedMessage.push("Passwords are not equal");
