@@ -30,6 +30,7 @@ export class LoginFormComponent {
   hideRegisterPW = true;
   hideRegisterConfirmPW = true;
   loginFailed = false; 
+  loginFailedMessage = ""
   showConfirmationEmailHint = false; 
   showSpinner = false; 
   showRegister = false; 
@@ -56,6 +57,12 @@ export class LoginFormComponent {
         },
         error: (err) => {
           console.error('HTTP Error', err); 
+          if(err.status == 401){
+            this.loginFailedMessage = err.error ; 
+          }
+          else{
+            this.loginFailedMessage ="Please check username and password"; 
+          }
           this.loginFailed = true
         }
       })

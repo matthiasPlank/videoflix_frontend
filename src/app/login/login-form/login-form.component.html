@@ -20,7 +20,7 @@
             <button mat-raised-button class="red-btn" [disabled]="!LoginForm.valid">Login</button>
 
             <div class="form-error">
-                <span *ngIf="loginFailed">Login Failed - Please check username and password</span>
+                <span *ngIf="loginFailed">Login Failed - {{loginFailedMessage}}</span>
             </div>
 
         </form>

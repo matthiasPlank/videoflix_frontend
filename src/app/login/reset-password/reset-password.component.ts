@@ -21,8 +21,8 @@ export class ResetPasswordComponent {
 
 
   resetPasswordForm = new FormGroup({
-    password: new FormControl('' , [Validators.required, Validators.minLength(4)] ),
-    confirmPassword: new FormControl('' , [Validators.required, Validators.minLength(4)] ),
+    password: new FormControl('' , [Validators.required, Validators.minLength(8)] ),
+    confirmPassword: new FormControl('' , [Validators.required, Validators.minLength(8)] ),
   });
 
   hideResetPW = true; 

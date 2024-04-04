@@ -34,10 +34,11 @@ $topMovieWidth: 50%;
         width: $topMovieWidth;
         display: flex;
         justify-content: end;
+        align-items: center;
 
         video {
             width: 100%;
-            height: 100%;
+            height: 99%;
             object-fit: cover;
         }
     }
