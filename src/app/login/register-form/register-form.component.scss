@@ -37,6 +37,12 @@
         flex-direction: column;
         padding: 48px;
 
+        .hint{
+            position: relative;
+            top: -5px;
+            font-size: 10px;
+        }
+
     
         #confirmation-email-hint {
             display: flex;

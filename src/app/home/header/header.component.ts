@@ -8,11 +8,12 @@ import { MatDialog , MatDialogActions, MatDialogClose, MatDialogContent} from '@
 import { VideouploadComponent } from '../videoupload/videoupload.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AuthService } from '../../services/auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule , MatButtonModule, MatMenuModule , MatDialogModule],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule , MatButtonModule, MatMenuModule , MatDialogModule, NgIf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -22,8 +23,7 @@ export class HeaderComponent {
     private router:Router, 
     public modalService: ModalService , 
     public dialog: MatDialog, 
-    private authService: AuthService){
-
+    public authService: AuthService){
   }
 
   /**

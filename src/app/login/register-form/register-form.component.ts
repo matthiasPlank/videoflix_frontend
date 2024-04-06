@@ -9,13 +9,14 @@ import { AuthService } from '../../services/auth.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, NgFor, MatProgressSpinnerModule, ],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, NgFor, MatProgressSpinnerModule, MatSelectModule ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss'
 })

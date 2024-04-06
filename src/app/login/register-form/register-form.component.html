@@ -12,19 +12,22 @@
 
             <mat-form-field>
                 <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hideRegisterPW ? 'password' : 'text'" formControlName="password">
+                <input matInput [type]="hideRegisterPW ? 'password' : 'text'" formControlName="password" #password >
                 <button type="button" mat-icon-button matSuffix (click)="hideRegisterPW = !hideRegisterPW" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hideRegisterPW">
                     <mat-icon>{{hideRegisterPW ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
+                <mat-hint class="hint" *ngIf="password.value.length > 0 && password.value.length < 8" align="start">min. lengt: 8</mat-hint>
+
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Confirm your password</mat-label>
-                <input matInput [type]="hideRegisterConfirmPW ? 'password' : 'text'" formControlName="confirmPassword">
+                <input matInput [type]="hideRegisterConfirmPW ? 'password' : 'text'" formControlName="confirmPassword" #confirmPassword>
                 <button type="button" mat-icon-button matSuffix (click)="hideRegisterConfirmPW = !hideRegisterConfirmPW" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hideRegisterConfirmPW">
                     <mat-icon>{{hideRegisterConfirmPW ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
+                <mat-hint class="hint" *ngIf="confirmPassword.value.length > 0 && confirmPassword.value.length < 8" align="start">min. lengt: 8</mat-hint>
             </mat-form-field>
 
             <div class="form-error" id="register-form-error" *ngIf="loginFailed">
