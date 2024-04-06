@@ -15,12 +15,10 @@
     <div id="category-video" #categoryVideoDiv (scroll)="onScroll()">
 
         <div id="category-video-item" *ngFor="let video of categoryVideos; index as i;" (click)="openVideo(video.id)">
-
             <img src="{{video.poster_file}}">
             <div id="category-video-item-play-button">
                 <img src="assets/icons/play-button-icon.svg" alt="play">
             </div>
-
         </div>
     </div>
 </div>

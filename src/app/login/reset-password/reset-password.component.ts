@@ -94,5 +94,4 @@ export class ResetPasswordComponent {
     this.showSpinner = false;
     this.restPasswordFailed = true
   }
-
 }

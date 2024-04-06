@@ -34,6 +34,7 @@ export class LoginFormComponent {
   showConfirmationEmailHint = false; 
   showSpinner = false; 
   showRegister = false; 
+  loginSpinner = false; 
 
   @Output() showReg = new EventEmitter<string>();
   @Output() showPWReset = new EventEmitter<string>();
@@ -47,6 +48,7 @@ export class LoginFormComponent {
   login(){
     const username = this.LoginForm.get("email")?.value; 
     const password = this.LoginForm.get("password")?.value; 
+    this.loginSpinner = true; 
 
     if(username != null && password != null){
       this.authService.getToken( username , password )
@@ -56,6 +58,7 @@ export class LoginFormComponent {
           this.router.navigate(['/home']);
         },
         error: (err) => {
+          this.loginSpinner = false; 
           console.error('HTTP Error', err); 
           if(err.status == 401){
             this.loginFailedMessage = err.error ; 
@@ -64,7 +67,10 @@ export class LoginFormComponent {
             this.loginFailedMessage ="Please check username and password"; 
           }
           this.loginFailed = true
-        }
+        }, 
+        complete: () =>  {
+            this.loginSpinner = false; 
+        } 
       })
     }
   }

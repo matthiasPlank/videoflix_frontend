@@ -17,7 +17,7 @@
                 </button>
             </mat-form-field>
 
-            <button mat-raised-button class="red-btn" [disabled]="!LoginForm.valid">Login</button>
+            <button mat-raised-button class="red-btn" [disabled]="!LoginForm.valid || loginSpinner">Login</button>
 
             <div class="form-error">
                 <span *ngIf="loginFailed">Login Failed - {{loginFailedMessage}}</span>

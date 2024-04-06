@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
+
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, NgFor, MatProgressSpinnerModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, MatButtonModule, NgIf, NgFor, MatProgressSpinnerModule, ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss'
 })
@@ -65,7 +66,6 @@ export class RegisterFormComponent {
         })
     }
     else{
-      debugger
       if(password != confirmPassword){
         this.loginFailedMessage = [];
         this.loginFailedMessage.push("Passwords are not equal");

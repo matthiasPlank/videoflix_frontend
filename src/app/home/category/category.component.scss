@@ -74,6 +74,7 @@
         }
     }
     .category-video-move-icon{
+        display: flex;
         z-index: 1;
         position: absolute;
         padding: 24px;
@@ -91,6 +92,7 @@
     }
     #category-video-move-right{
         right: 20px; 
+
     }
 }
 

@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { timestamp } from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
+import { style } from '@angular/animations';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CategoryComponent {
   scrollSpeed = 90; 
   currentScrollPos:number = 0; 
   scrollWidth:number = 800; 
-  isScrollbarAtEnd = false; 
+  isScrollbarAtEnd = true; 
   @ViewChild('categoryVideoDiv') categoryVideoDiv!: ElementRef<HTMLDivElement>;
 
   constructor(private router: Router) {
