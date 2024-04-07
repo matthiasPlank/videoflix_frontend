@@ -60,7 +60,7 @@ export class RegisterFormComponent {
           },
           error: (err) => {
             this.loginFailedMessage = [];
-            console.log('HTTP Error', err);
+            console.error('HTTP Error', err);
             this.printErrorMessage(err);
           },
           complete: () => console.info('complete')
